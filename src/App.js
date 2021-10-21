@@ -1,7 +1,7 @@
 //import logo from './logo.svg';
 import "./App.css";
 import { Route, Switch, Redirect} from "react-router-dom";
-
+import Navbar from './components/Navbar'
 import Home from "./components/Home";
 import Inventory from "./components/Inventory";
 import Mapping from "./components/Mapping";
@@ -27,7 +27,7 @@ function App() {
           Learn React
         </a>
       </header> */}
-
+     <Navbar />
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/inventory" component={Inventory} />
