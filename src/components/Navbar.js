@@ -13,19 +13,19 @@ export default  class Navbar extends Component {
 
       const headerStyle = {
         position: 'absolute',
-  right: '50px',
+        right: '50px',
         paddingTop: '5px',
-        //paddingLeft: '225px',
+
         textAlign: 'right',
         color: 'blue',
         fontSize: '30px',
       }
+      // testing to see if prettier is working.
     return (
       <div style={{
         display: 'flex',
         textAlign: 'left',
         justifyContent: 'left',
-
         height: '45px',
         paddingLeft: '10px',
         borderBottom: '3px solid rgba(0, 0, 128)',
