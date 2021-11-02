@@ -12,7 +12,7 @@ class InventoryContainer extends Component {
 
 
     render () {
-        return <React.Fragment><h1>This is the Inventory page.{this.props.inventory}</h1></React.Fragment>
+        return <React.Fragment><h1>This is the Inventory page.</h1><p>{this.props.inventory}</p></React.Fragment>
     }
 
 }
