@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux'
-import { INCREMENT, DECREMENT } from './actionTypes';
+import { combineReducers } from 'redux';
+import { INCREMENT, DECREMENT } from './actionTypes.js';
 
 const inventoryReducer = (state = {inventory:4}, action) => {
     switch (action.type) {
