@@ -10,7 +10,8 @@ export function increment() {
        type: DECREMENT
     }}
 
-export function barcode() {
+export function barcode(text) {
 return {
-   type: BARCODE
+   type: BARCODE,
+   payload: {text: text}
 }}

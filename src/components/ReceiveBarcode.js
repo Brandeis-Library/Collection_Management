@@ -1,6 +1,7 @@
 import React, {Component}from 'react';
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap';
+import {barcode} from '../redux/actions'
 //import FindItem from './FindItem';
 
 
@@ -8,22 +9,22 @@ class ReceiveBarcodeContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tempBarcode: "",
+
       barcode: '',
 
     }
   }
 
   handleChange = (event) => {
-    this.setState({ tempBarcode: event.target.value })
-    console.log(this.state.tempBarcode)
+    this.setState({ barcode: event.target.value })
+    console.log(this.state.barcode)
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.tempBarcode.length <= 14 || this.state.tempBarcode.length >= 13) {
-      this.setState({ barcode: this.state.tempBarcode });
-      this.setState({ tempBarcode: "" });
+    if (this.state.barcode.length <= 14 || this.state.barcode.length >= 13) {  
+      //this.setState({ tempBarcode: "" });
+      this.props.barcode({text: this.state.barcode})
     } else {
       alert("Please enter a properly formatted barcode.")
     }
@@ -49,7 +50,7 @@ class ReceiveBarcodeContainer extends Component {
     return (
       <div>
         <p>
-          {this.props.inventory}
+          {this.props.inventory} ReceiveBarcodeContainer
       </p>
         <form onSubmit={this.handleSubmit}>
           <label style={labelStyle}>
@@ -72,11 +73,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-      barcode: this.state.barcode => dispatch(barcode(this.state.barcode))
+      barcode: text => dispatch(barcode(text))
   }
 }
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReceiveBarcodeContainer)
 
-export default ReceiveBarcode;
+

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ReceiveBarcode from './ReceiveBarcode'
-import {barcode} from '../redux/actions'
+//import {barcode} from '../redux/actions'
 
 
 class InventoryContainer extends Component {
@@ -20,7 +20,7 @@ class InventoryContainer extends Component {
                 {/* <h1>This is the Inventory page.</h1> */}
                 <ReceiveBarcode />
                 <p>
-                    {this.props.inventory}
+                   {this.props.inventory} InventoryContainer 
                 </p>
             </React.Fragment>
         )
@@ -36,7 +36,7 @@ const mapStateToProps = state => {
 
 // const mapDispatchToProps = dispatch => {
 //     return {
-//         addInventory: inventory => dispatch(addInventory(inventory))
+//         barcode: state. => dispatch(addInventory(inventory))
 //     }
 // }
 
