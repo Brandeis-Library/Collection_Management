@@ -20,8 +20,10 @@ class InventoryContainer extends Component {
                 {/* <h1>This is the Inventory page.</h1> */}
                 <ReceiveBarcode />
                 <p>
-                   {this.props.inventory} InventoryContainer 
+                    InventoryContainer 
                 </p>
+                <p>{this.props.inventory}</p>
+                <p>{this.props.barcode}</p>
             </React.Fragment>
         )
     }
@@ -30,7 +32,8 @@ class InventoryContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        inventory: state.inventory.inventory
+        inventory: state.inventory.inventory,
+        barcode: state.inventory.barcode
     }
 }
 
