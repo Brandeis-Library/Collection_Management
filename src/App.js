@@ -1,4 +1,4 @@
-//import logo from './logo.svg';
+
 import "./App.css";
 import { Route, Switch, Redirect} from "react-router-dom";
 import Navbar from './components/Navbar'
@@ -9,24 +9,12 @@ import Admin from "./components/Admin";
 import BulkCheckin from "./components/BulkCheckin";
 import IronMountain from "./components/IronMountain";
 import My404Component from "./components/My404Component"
+
 // testing Pretti
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+
      <Navbar />
       <Switch>
         <Route path="/" component={Home} exact />
