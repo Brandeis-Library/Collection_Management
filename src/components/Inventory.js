@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ReceiveBarcode from './ReceiveBarcode'
+import {barcode} from '../redux/actions'
+
 
 class InventoryContainer extends Component {
 

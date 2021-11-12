@@ -1,4 +1,4 @@
-import {INCREMENT, DECREMENT} from './actionTypes'
+import {INCREMENT, DECREMENT, BARCODE} from './actionTypes'
 
 export function increment() {
     return {
@@ -9,3 +9,8 @@ export function increment() {
     return {
        type: DECREMENT
     }}
+
+export function barcode() {
+return {
+   type: BARCODE
+}}
