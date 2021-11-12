@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ReceiveBarcode from './ReceiveBarcode'
-//import {barcode} from '../redux/actions'
+
 
 
 class InventoryContainer extends Component {
 
-    // addInventory = event => {
-    //     event.preventDefault()
-    //     console.log(this.state.inventory)
    
-
-    // }
-
-
     render () {
         return (
             <React.Fragment>
@@ -39,7 +32,7 @@ const mapStateToProps = state => {
 
 // const mapDispatchToProps = dispatch => {
 //     return {
-//         barcode: state. => dispatch(addInventory(inventory))
+//         : => dispatch(())
 //     }
 // }
 

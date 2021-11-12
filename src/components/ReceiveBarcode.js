@@ -23,8 +23,8 @@ class ReceiveBarcodeContainer extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     if (this.state.barcode.length <= 14 || this.state.barcode.length >= 13) {  
-      //this.setState({ tempBarcode: "" });
       this.props.barcode({text: this.state.barcode})
+      this.setState({ tempBarcode: "" });
     } else {
       alert("Please enter a properly formatted barcode.")
     }
@@ -59,7 +59,7 @@ class ReceiveBarcodeContainer extends Component {
           </label>  
           <Button className={"btn-min btn-primary"} size="sm" type="submit" value="Submit" style={buttonStyle}>Submit Barcode</Button>
         </form>
-        {/* <FindItem barcode2={this.state.barcode} /> */}
+
       </div>
     )
   }
