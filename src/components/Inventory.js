@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import ReceiveBarcode from './ReceiveBarcode'
 
 class InventoryContainer extends Component {
 
@@ -12,7 +13,15 @@ class InventoryContainer extends Component {
 
 
     render () {
-        return <React.Fragment><h1>This is the Inventory page.</h1><p>{this.props.inventory}</p></React.Fragment>
+        return (
+            <React.Fragment>
+                {/* <h1>This is the Inventory page.</h1> */}
+                <ReceiveBarcode />
+                <p>
+                    {this.props.inventory}
+                </p>
+            </React.Fragment>
+        )
     }
 
 }
