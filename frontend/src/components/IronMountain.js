@@ -11,7 +11,7 @@ import {increment, decrement } from '../redux/actions'
         <React.Fragment>
             <h1>This is the Iron Mountain page.</h1>
             <p>
-                {this.props.inventory}
+                {this.props.inventory}<br/>{this.props.barcode}
                 </p>
                 <div>
                 <Button onClick = {this.props.increment} className={"btn-min btn-success"} size="sm" type="submit" value="Submit" >Increment by 1</Button>
@@ -20,6 +20,7 @@ import {increment, decrement } from '../redux/actions'
                 <div>
                 <Button onClick = {this.props.decrement} className={"btn-min btn-danger"} size="sm" type="submit" value="Submit" >Decrement by 1</Button>
                 </div>
+
         </React.Fragment>)
     }
 
@@ -27,7 +28,8 @@ import {increment, decrement } from '../redux/actions'
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        inventory: state.inventory.inventory
+        inventory: state.inventory.inventory,
+        barcode: state.inventory.barcode
     }
   }
   

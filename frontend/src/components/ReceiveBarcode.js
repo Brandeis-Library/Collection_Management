@@ -22,7 +22,7 @@ class ReceiveBarcodeContainer extends Component {
     event.preventDefault();
     if (this.state.barcode.length <= 14 || this.state.barcode.length >= 13) {  
       this.props.barcode({text: this.state.barcode})
-      this.setState({ tempBarcode: "" });
+      this.setState({ barcode: "" });
     } else {
       alert("Please enter a properly formatted barcode.")
     }
