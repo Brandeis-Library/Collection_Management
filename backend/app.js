@@ -7,6 +7,8 @@ const port = process.env.PORT || 4000
 //load env variables
 dotenv.config({ path: './config/config.env' });
 
+const inventoryRouter = require('./routes/inventory')
+
 const app = express()
 
 // middleware
@@ -18,9 +20,12 @@ app.use(express.json());
 // logger
 app.use(morgan('dev'))
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
+
+//create routes
+app.use('/api/v1/inventory', inventoryRouter);
 
 app.listen(port, () => {
   console.log(`Collection Management app listening at http://localhost:${port}`)
