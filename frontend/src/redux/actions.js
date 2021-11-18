@@ -15,3 +15,9 @@ return {
    type: BARCODE,
    payload: {text: text}
 }}
+
+// export sendBarcodeToBackend(barcode) {
+//    return async function fetchItemDetailThunk(dispatch, getState) {
+//       const response = await 
+//    }
+// }
