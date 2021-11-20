@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cors = require('cors')
 
 const port = process.env.PORT || 4000
 
@@ -19,6 +20,9 @@ app.use(express.json());
 
 // logger
 app.use(morgan('dev'))
+
+// cors
+app.use(cors())
 
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
