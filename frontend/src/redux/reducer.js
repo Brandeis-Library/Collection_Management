@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import { INCREMENT, DECREMENT, BARCODE } from './actionTypes.js';
+import { INCREMENT, DECREMENT, BARCODE, SENDBARCODE } from './actionTypes.js';
 
-const inventoryReducer = (state = {inventory:4, barcode: "", }, action) => {
+const inventoryReducer = (state = {inventory:4, barcode: "", barcode2: "",}, action) => {
     switch (action.type) {
         case INCREMENT:
             return {...state, inventory: state.inventory + 1};
@@ -9,7 +9,8 @@ const inventoryReducer = (state = {inventory:4, barcode: "", }, action) => {
             return {...state, inventory: state.inventory - 1};
         case BARCODE:
             return {...state, barcode: action.payload.text.text };
-
+        case SENDBARCODE:
+            return {...state, barcode2: action.payload.barcode2};
         default: return state
     }
 }

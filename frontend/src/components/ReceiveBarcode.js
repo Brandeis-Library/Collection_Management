@@ -1,7 +1,7 @@
 import React, {Component}from 'react';
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap';
-import {barcode} from '../redux/actions'
+import {barcode,sendBarcodeToBackend} from '../redux/actions'
 
 class ReceiveBarcodeContainer extends Component {
   constructor(props) {
@@ -22,6 +22,7 @@ class ReceiveBarcodeContainer extends Component {
     event.preventDefault();
     if (this.state.barcode.length <= 14 || this.state.barcode.length >= 13) {  
       this.props.barcode({text: this.state.barcode})
+      this.props.sendBarcodeToBackend({text: this.state.barcode})
       this.setState({ barcode: "" });
     } else {
       alert("Please enter a properly formatted barcode.")
@@ -71,7 +72,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-      barcode: text => dispatch(barcode(text))
+      barcode: text => dispatch(barcode(text)),
+      sendBarcodeToBackend: text => dispatch(sendBarcodeToBackend(text))
   }
 }
 
