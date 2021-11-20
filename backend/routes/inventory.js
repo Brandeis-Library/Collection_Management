@@ -5,12 +5,13 @@ var router = express.Router()
 
 router.get('/', function (req, res) {
   console.log("req.body)",req.body)
-      res.status(200).send('Inventory "get" home page')
+  res.status(200).send('Inventory home page')
     })
 
 router.post('/', function (req, res) {
-console.log("req.body)",req.body)
-    res.status(200).send('Inventory home page')
+  console.log("req.body)",req.body)
+    
+res.status(200).send({"barcode": `${req.body.barcode.text}`})
   })
 
   module.exports = router;

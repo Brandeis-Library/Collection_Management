@@ -21,14 +21,14 @@ export function sendBarcodeToBackend(barcode) {
    return async function fetchItemDetailThunk(dispatch, getState) {
       console.log("barcode in actions.js ---------", barcode)
       const response = await axios.post('http://localhost:4000/api/v1/inventory/', {barcode})
-      console.log(response)
-         dispatch(sendBarCode(response.data))  
+      console.log("fetchItemDetailThunk-------",response.data.barcode)
+         dispatch(sendBarCode(response.data.barcode))  
    }
 }
 
 export function sendBarCode(barcode) {
    return {
       type: SENDBARCODE,
-      payload: {barcode2: barcode}
+      payload: {"barcode2": barcode}
    }
 }   
