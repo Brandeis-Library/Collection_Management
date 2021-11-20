@@ -14,7 +14,8 @@ class InventoryContainer extends Component {
                 <ReceiveBarcode />
                 <p>InventoryContainer</p>
                 <p>{this.props.inventory}</p>
-                <p>{this.props.barcode}</p>
+                <p>#1 {' '}{this.props.barcode}</p>
+                <p>#2 {' '}{this.props.barcode2}</p>
             </React.Fragment>
         )
     }
@@ -24,15 +25,10 @@ class InventoryContainer extends Component {
 const mapStateToProps = state => {
     return {
         inventory: state.inventory.inventory,
-        barcode: state.inventory.barcode
+        barcode: state.inventory.barcode,
+        barcode2: state.inventory.barcode2,
     }
 }
-
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         : => dispatch(())
-//     }
-// }
 
 
 export default connect(mapStateToProps, null)(InventoryContainer)
