@@ -24,9 +24,9 @@ app.use(morgan('dev'))
 // cors
 app.use(cors())
 
-// app.get('/', (req, res) => {
-//   res.send('Hello World!')
-// })
+app.get('/', (req, res) => {
+  res.send('Welcome to the Collection Mangement application backend!')
+})
 
 //create routes
 app.use('/api/v1/inventory', inventoryRouter);
