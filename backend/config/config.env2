@@ -1,2 +1,7 @@
 
 PORT=5000
+EXLIBRIS_API_ROOT="https://"
+EXLIBRIS_API_PATH="/someurl?="
+EXLIBRIS_API_BIB_GET_KEY="some api key"
+EXLIBRIS_API_BIB_UPDATE_KEY="some api key"
+EXLIBRIS_API_PATH_HOLDINGS="/someurl/"
