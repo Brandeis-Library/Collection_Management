@@ -5,6 +5,8 @@ const axios = require('axios')
 const dotenv = require('dotenv');
 dotenv.config();
 
+const retrieveDataItems = require('../helperFunctions/retrieveItemData')
+
 // define the home page route
 
 // generic get route to test avaialablity
@@ -22,6 +24,8 @@ router.post('/', async function (req, res) {
      //item retrieve query to Alma backend. API URL, Item Barcode, and APIKEY
      const { data } = await axios.get(process.env.EXLIBRIS_API_ROOT + process.env.EXLIBRIS_API_PATH + barcode + '&apikey=' + process.env.EXLIBRIS_API_BIB_GET_KEY + "&expand=p_avail");
 console.log("data", data)
+const dataObj = retrieveDataItems(data)
+console.log("dataObj ++++++++++++ ", dataObj)
 res.status(200).send({"barcode": `${req.body.barcode.text}`})
   } catch (error) {
     console.log("retreiveItemErrorAPI Error:   ", error.message);
