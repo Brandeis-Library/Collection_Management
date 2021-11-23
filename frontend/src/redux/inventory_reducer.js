@@ -1,6 +1,11 @@
 import { INCREMENT, DECREMENT, BARCODE, SENDBARCODE } from './actionTypes.js';
 
-const initialState = {inventory:4, barcode: "", barcode2: "", title: "",}
+const initialState = {
+    inventory:4, 
+    barcode: "", 
+    barcode2: "", 
+    title: "",
+}
 
 
 export const inventoryReducer = (state = initialState, action) => {

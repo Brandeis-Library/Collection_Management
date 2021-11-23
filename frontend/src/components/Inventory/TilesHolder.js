@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import DataDisplay from './DataDisplay';
+import DataForm from './DataForm';
 
 export default class TilesHolder extends Component {
 
     render () {
-        return <h1>This is the TilesHolder page.</h1>
+        return <React.Fragment><DataDisplay/><DataForm/></React.Fragment>
     }
 
 }
