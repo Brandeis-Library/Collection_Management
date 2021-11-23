@@ -29,6 +29,6 @@ export function sendBarcodeToBackend(barcode) {
 export function sendBarCode(dataObj) {
    return {
       type: SENDBARCODE,
-      payload: {"barcode2": dataObj.barcode}
+      payload: {"barcode2": dataObj.barcode, "title": dataObj.title}
    }
 }   
