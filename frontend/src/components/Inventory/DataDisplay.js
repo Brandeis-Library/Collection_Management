@@ -7,12 +7,13 @@ class DataDisplayContainer extends Component {
     render () {
         return (
             <React.Fragment>
-               <h1>This is the DataDisplay page.</h1> 
+               <h5>This is the DataDisplay page.</h5> 
               
                 <p>DataDisplayContainer</p>
                 <p>{this.props.inventory}</p>
                 <p>#1 {' '}{this.props.barcode}</p>
                 <p>#2 {' '}{this.props.barcode2}</p>
+                <p>Title: {this.props.title}</p>
 
             </React.Fragment>
         )

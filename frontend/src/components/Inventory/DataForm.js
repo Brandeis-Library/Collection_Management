@@ -7,7 +7,7 @@ class DataFormContainer extends Component {
     render () {
         return (
             <React.Fragment>
-               <h1>This is the DataForm page.</h1> 
+               <h5>This is the DataForm page.</h5> 
               
                 <p>DataFormContainer</p>
                 <p>{this.props.inventory}</p>

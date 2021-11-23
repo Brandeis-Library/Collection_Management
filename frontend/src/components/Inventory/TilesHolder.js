@@ -5,7 +5,31 @@ import DataForm from './DataForm';
 export default class TilesHolder extends Component {
 
     render () {
-        return <React.Fragment><DataDisplay/><DataForm/></React.Fragment>
+
+        const floatContainer = {
+            padding: '20px',
+        }
+
+        const floatChild = {
+            width: '48%',
+            float: 'left',
+            padding: '20px',
+            margin: '10px',
+            border: '3px solid blue',
+            borderRadius: '15px',
+        }
+
+
+        return (
+        <div style={floatContainer}>
+            <div style={floatChild}>
+                <DataDisplay/>
+            </div>  
+            <div style={floatChild}>
+                <DataForm/>
+            </div>
+         </div>
+         )
     }
 
 }
