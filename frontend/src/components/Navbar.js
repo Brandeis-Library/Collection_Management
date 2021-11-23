@@ -40,7 +40,7 @@ export default  class Navbar extends Component {
         
       }}>
         <Link style={linkStyle} to="/">Home</Link>
-        <Link style={linkStyle} to="/inventory">Inventory</Link>
+        <Link style={linkStyle} to="/Inventory">Inventory</Link>
         <Link style={linkStyle} to="/Mapping">Mapping</Link>
         <Link style={linkStyle} to="/admin">Admin</Link>
         <Link style={linkStyle} to="/BulkCheckin">Bulk Checkin</Link>

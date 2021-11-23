@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ReceiveBarcode from './ReceiveBarcode'
+import TilesHolder from './TilesHolder';
 
 
 
@@ -16,6 +17,7 @@ class InventoryContainer extends Component {
                 <p>{this.props.inventory}</p>
                 <p>#1 {' '}{this.props.barcode}</p>
                 <p>#2 {' '}{this.props.barcode2}</p>
+                <TilesHolder></TilesHolder>
             </React.Fragment>
         )
     }

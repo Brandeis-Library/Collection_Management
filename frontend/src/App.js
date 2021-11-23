@@ -3,7 +3,7 @@ import "./App.css";
 import { Route, Switch, Redirect} from "react-router-dom";
 import Navbar from './components/Navbar'
 import Home from "./components/Home";
-import Inventory from "./components/Inventory";
+import Inventory from "./components/Inventory/Inventory";
 import Mapping from "./components/Mapping";
 import Admin from "./components/Admin";
 import BulkCheckin from "./components/BulkCheckin";

@@ -1,7 +1,7 @@
 import React, {Component}from 'react';
 import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap';
-import {barcode,sendBarcodeToBackend} from '../redux/actions'
+import {barcode,sendBarcodeToBackend} from '../../redux/actions'
 
 class ReceiveBarcodeContainer extends Component {
   constructor(props) {
