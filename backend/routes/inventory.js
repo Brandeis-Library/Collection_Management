@@ -25,7 +25,7 @@ router.post('/', async function (req, res) {
      const { data } = await axios.get(process.env.EXLIBRIS_API_ROOT + process.env.EXLIBRIS_API_PATH + barcode + '&apikey=' + process.env.EXLIBRIS_API_BIB_GET_KEY + "&expand=p_avail");
 
 const dataObj = retrieveDataItems(data)
-
+console.log("dataObj", dataObj);
 res.status(200).send({"dataObj": dataObj})
   } catch (error) {
     console.log("retreiveItemErrorAPI Error:   ", error.message);

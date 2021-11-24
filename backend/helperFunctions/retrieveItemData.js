@@ -16,6 +16,9 @@ const itemRecordObj = {
     inventoryDate: '',
     internalNote3: '',
     link: '',
+    replacementCost: '',
+    provenance: '',
+    condition: '',
   };
 
   const retrieveDataItems = (data) => {
@@ -36,6 +39,9 @@ const itemRecordObj = {
      itemRecordObj.internalNote3 = data.item_data.internal_note_3;
      itemRecordObj.dataObjTotal = data;
      itemRecordObj.barcode = data.item_data.barcode;
+     itemRecordObj.replacementCost = data.item_data.inventory_price;
+     itemRecordObj.provenance = data.item_data.provenance;
+     itemRecordObj.condition = data.item-data.physical_condition;
 
     return itemRecordObj;
   }
