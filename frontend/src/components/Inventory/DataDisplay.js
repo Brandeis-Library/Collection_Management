@@ -5,16 +5,17 @@ class DataDisplayContainer extends Component {
 
    
     render () {
+        const listStyle = {
+            textAlign: 'left',
+        }
+
         return (
             <React.Fragment>
-               <h5>This is the DataDisplay page.</h5> 
-              
-                <p>DataDisplayContainer</p>
-                <p>{this.props.inventory}</p>
-                <p>#1 {' '}{this.props.barcode}</p>
-                <p>#2 {' '}{this.props.barcode2}</p>
-                <p>Title: {this.props.title}</p>
-
+               <h5>Item Information</h5> 
+               <div style={listStyle}>
+                Barcode: {this.props.barcode2} <br/>
+                Title: {this.props.title} <br/>
+                </div>
             </React.Fragment>
         )
     }
@@ -23,8 +24,6 @@ class DataDisplayContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        inventory: state.inventory.inventory,
-        barcode: state.inventory.barcode,
         barcode2: state.inventory.barcode2,
         title: state.inventory.title,
     }
