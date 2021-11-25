@@ -23,8 +23,8 @@ router.post('/', async function (req, res) {
   const barcode = req.body.barcode.text
      //item retrieve query to Alma backend. API URL, Item Barcode, and APIKEY
      const { data } = await axios.get(process.env.EXLIBRIS_API_ROOT + process.env.EXLIBRIS_API_PATH + barcode + '&apikey=' + process.env.EXLIBRIS_API_BIB_GET_KEY + "&expand=p_avail");
-
-const dataObj = retrieveDataItems(data)
+console.log("physical_condition ======== ",data.item_data.physical_condition)
+     const dataObj = retrieveDataItems(data)
 console.log("dataObj", dataObj);
 res.status(200).send({"dataObj": dataObj})
   } catch (error) {

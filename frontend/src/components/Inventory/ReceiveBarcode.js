@@ -7,9 +7,7 @@ class ReceiveBarcodeContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
       barcode: '',
-
     }
   }
 
@@ -54,7 +52,7 @@ class ReceiveBarcodeContainer extends Component {
         <form onSubmit={this.handleSubmit}>
           <label style={labelStyle}>
             Barcode:{' '}
-        <input type="text" autoFocus value={this.state.tempBarcode} onChange={this.handleChange} name="tempBarcode" placeholder="ex: 39097009544900" />
+        <input type="text" autoFocus value={this.state.barcode} onChange={this.handleChange} name="barcode" placeholder="ex: 39097009544900" />
           </label>  
           <Button className={"btn-min btn-primary"} size="sm" type="submit" value="Submit" style={buttonStyle}>Submit Barcode</Button>
         </form>
