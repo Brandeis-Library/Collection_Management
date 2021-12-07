@@ -29,10 +29,20 @@ router.post("/", async function (req, res) {
         process.env.EXLIBRIS_API_BIB_GET_KEY +
         "&expand=p_avail",
     );
-    console.log("physical_condition ======== ", data.item_data.physical_condition);
+    //console.log("physical_condition ======== ", data.item_data.physical_condition);
     const dataObj = retrieveDataItems(data);
-    console.log("dataObj", dataObj);
+    //console.log("dataObj", dataObj);
     res.status(200).send({ dataObj: dataObj });
+  } catch (error) {
+    console.log("retreiveItemErrorAPI Error:   ", error.message);
+    res.send(error);
+  }
+});
+
+router.put("/", function (req, res) {
+  try {
+    console.log("inside put route")
+    console.log("Inventory put route - req.body ++++++ )", req.body);
   } catch (error) {
     console.log("retreiveItemErrorAPI Error:   ", error.message);
     res.send(error);
