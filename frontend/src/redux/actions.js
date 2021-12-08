@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, BARCODE, SENDBARCODE } from "./actionTypes";
+import { INCREMENT, DECREMENT, BARCODE, SENDBARCODE, UPDATEITEM } from "./actionTypes";
 import axios from "axios";
 
 export function increment() {
@@ -27,7 +27,7 @@ export function sendBarcodeToBackend(barcode) {
     console.log("fetchItemDetailThunk-------", respDataObj.data);
     dispatch(sendBarCode(respDataObj));
     const responseWithUpdate = await axios.put("http://localhost:4000/api/v1/inventory/", { respDataObj });
-    dispatch(sendBarCode(responseWithUpdate.data))
+    dispatch(updateItem(responseWithUpdate.data))
   };
 }
 
@@ -54,6 +54,16 @@ export function sendBarCode(dataObj) {
       replacementCost: dataObj.replacementCost,
       provenance: dataObj.provenance,
       condition: dataObj.condition,
+    },
+  };
+}
+
+export function updateItem(dataObj) {
+  return {
+    type: UPDATEITEM,
+    payload: {
+    dataObjTotal: dataObj,
+    inventoryDate: dataObj.item_data.inventory_date,
     },
   };
 }
