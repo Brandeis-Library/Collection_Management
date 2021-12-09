@@ -45,7 +45,6 @@ class ReceiveBarcodeContainer extends Component {
 
     return (
       <div>
-        <p>{this.props.inventory} ReceiveBarcodeContainer</p>
         <form onSubmit={this.handleSubmit}>
           <label style={labelStyle}>
             Barcode:{" "}
@@ -72,11 +71,11 @@ class ReceiveBarcodeContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    inventory: state.inventory.inventory,
-  };
-};
+// const mapStateToProps = (state) => {
+//   return {
+//     //inventory: state.inventory.inventory,
+//   };
+// };
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -85,4 +84,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReceiveBarcodeContainer);
+export default connect(null, mapDispatchToProps)(ReceiveBarcodeContainer);
