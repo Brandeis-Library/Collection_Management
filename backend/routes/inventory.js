@@ -39,19 +39,53 @@ router.post("/", async function (req, res) {
   }
 });
 
+router.put("/itemform", async function (req, res) {
+  try {
+    console.log("inside iventory itemform route -----------------");
+    console.log("req.body", req.body);
+    console.log("itemform dataObj from the frontend ------------- ", req.body.obj.internalNote3);
+    res.status(200);
+  } catch (error) {
+    console.log("updateItemErrorAPI Error:   ", error.message);
+    res.send(error);
+  }
+});
+
 router.put("/", async function (req, res) {
   try {
-    //console.log("Inventory put route - req.body ++++++ )", req.body.respDataObj);
+    //console.log("Inventory main put route - req.body ++++++ )", req.body.respDataObj);
     const dataObj = req.body.respDataObj.dataObjTotal;
-    console.log("dataObj item-data", dataObj.item_data);
+    //console.log("dataObj item-data", dataObj.item_data);
 
     const date = new Date();
     //req.body.resp.dataitem_data.inventory_date = date;
-    dataObj.item_data.inventory_date = date
+    dataObj.item_data.inventory_date = date;
     //console.log("dataObj", dataObj);
-    console.log("update item url", process.env.EXLIBRIS_API_ROOT + '/almaws/v1/bibs/' + dataObj.bib_data.mms_id + '/holdings/' + dataObj.holding_data.holding_id + '/items/' + dataObj.item_data.pid + '?apikey=' + process.env.EXLIBRIS_API_BIB_UPDATE_KEY,)
-    let { data } = await axios.put(process.env.EXLIBRIS_API_ROOT + '/almaws/v1/bibs/' + dataObj.bib_data.mms_id + '/holdings/' + dataObj.holding_data.holding_id + '/items/' + dataObj.item_data.pid + '?apikey=' + process.env.EXLIBRIS_API_BIB_UPDATE_KEY, dataObj)
-console.log("data --------------------- ", data)
+    //console.log(
+    //   "update item url",
+    //   process.env.EXLIBRIS_API_ROOT +
+    //     "/almaws/v1/bibs/" +
+    //     dataObj.bib_data.mms_id +
+    //     "/holdings/" +
+    //     dataObj.holding_data.holding_id +
+    //     "/items/" +
+    //     dataObj.item_data.pid +
+    //     "?apikey=" +
+    //     process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
+    // );
+    let { data } = await axios.put(
+      process.env.EXLIBRIS_API_ROOT +
+        "/almaws/v1/bibs/" +
+        dataObj.bib_data.mms_id +
+        "/holdings/" +
+        dataObj.holding_data.holding_id +
+        "/items/" +
+        dataObj.item_data.pid +
+        "?apikey=" +
+        process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
+      dataObj,
+    );
+    console.log("data --------------------- ", data);
     res.json(data);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);

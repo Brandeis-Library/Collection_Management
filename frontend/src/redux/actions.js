@@ -1,4 +1,11 @@
-import { INCREMENT, DECREMENT, BARCODE, SENDBARCODE, UPDATEITEM } from "./actionTypes";
+import {
+  INCREMENT,
+  DECREMENT,
+  BARCODE,
+  SENDBARCODE,
+  UPDATEITEM,
+  UPDATEITEMFORM,
+} from "./actionTypes";
 import axios from "axios";
 
 export function increment() {
@@ -23,11 +30,13 @@ export function sendBarcodeToBackend(barcode) {
   return async function fetchItemDetailThunk(dispatch, getState) {
     console.log("barcode in actions.js ---------", barcode);
     const response = await axios.post("http://localhost:4000/api/v1/inventory/", { barcode });
-    const respDataObj = response.data.dataObj
+    const respDataObj = response.data.dataObj;
     console.log("fetchItemDetailThunk-------", respDataObj.data);
     dispatch(sendBarCode(respDataObj));
-    const responseWithUpdate = await axios.put("http://localhost:4000/api/v1/inventory/", { respDataObj });
-    dispatch(updateItem(responseWithUpdate.data))
+    const responseWithUpdate = await axios.put("http://localhost:4000/api/v1/inventory/", {
+      respDataObj,
+    });
+    dispatch(updateItem(responseWithUpdate.data));
   };
 }
 
@@ -62,8 +71,27 @@ export function updateItem(dataObj) {
   return {
     type: UPDATEITEM,
     payload: {
-    dataObjTotal: dataObj,
-    inventoryDate: dataObj.item_data.inventory_date,
+      dataObjTotal: dataObj,
+      inventoryDate: dataObj.item_data.inventory_date,
     },
   };
+}
+
+export function updateItemForm(obj) {
+  return async function updateItemThunk(dispatch, getState) {
+    const responseWithUpdate = await axios.put("http://localhost:4000/api/v1/inventory/itemform", {
+      obj,
+    });
+    console.log("responseWithUpdate ", responseWithUpdate);
+    return responseWithUpdate;
+  };
+  // return {
+  //   type: UPDATEITEMFORM,
+  //   payload: {
+  //     internalNote3: obj.internalNote3,
+  //     replacementCost: obj.replacementCost,
+  //     provenance: obj.provenance,
+  //     condition: obj.condition,
+  //   },
+  // };
 }

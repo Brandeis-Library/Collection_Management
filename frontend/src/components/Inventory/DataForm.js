@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateItem } from "../../redux/actions";
+import { Button } from "react-bootstrap";
+import { updateItemForm } from "../../redux/actions";
 
 class DataFormContainer extends Component {
   constructor(props) {
@@ -26,7 +27,9 @@ class DataFormContainer extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    this.props.updateItem({
+    //const obj = this.props.dataObj
+    this.props.updateItemForm({
+      dataObj: this.props.dataObj,
       internalNote3: this.state.note3,
       replacementCost: this.state.price,
       provenance: this.state.provenance,
@@ -35,11 +38,20 @@ class DataFormContainer extends Component {
   };
 
   render() {
+    const buttonStyle = {
+      borderRadius: "5px",
+      paddingTop: "7px",
+      paddingBottom: "7px",
+      marginBottom: "5px",
+      fontSize: "15px",
+    };
+
+    //console.log("this.props for DataForm +++++++++++++ ", this.props);
     return (
       <React.Fragment>
         <h5>Update Item Information</h5>
         <br />
-        <form>
+        <form onSubmit={this.handleFormSubmit}>
           <label>
             Note:{" "}
             <input
@@ -89,6 +101,16 @@ class DataFormContainer extends Component {
               <option value="FRAGILE">Fragile</option>
             </select>
           </label>
+          <br />
+          <br />
+          <Button
+            className={"btn-min btn-primary"}
+            size="sm"
+            type="submit"
+            value="Submit"
+            style={buttonStyle}>
+            Submit Form Data
+          </Button>
         </form>
       </React.Fragment>
     );
@@ -97,10 +119,11 @@ class DataFormContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    inventory: state.inventory.inventory,
-    barcode: state.inventory.barcode,
-    barcode2: state.inventory.barcode2,
-    title: state.inventory.title,
+    // inventory: state.inventory.inventory,
+    // barcode: state.inventory.barcode,
+    // barcode2: state.inventory.barcode2,
+    // title: state.inventory.title,
+    dataObj: state.inventory.dataObjTotal,
   };
 };
 
@@ -108,8 +131,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // barcode: (text) => dispatch(barcode(text)),
     // sendBarcodeToBackend: (text) => dispatch(sendBarcodeToBackend(text)),
-    updateItem: (obj) => {
-      dispatch(updateItem(obj));
+    updateItemForm: (obj) => {
+      dispatch(updateItemForm(obj));
     },
   };
 };
