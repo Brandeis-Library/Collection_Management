@@ -44,6 +44,20 @@ router.put("/itemform", async function (req, res) {
     console.log("inside iventory itemform route -----------------");
     console.log("req.body", req.body);
     console.log("itemform dataObj from the frontend ------------- ", req.body.obj.internalNote3);
+    const dataObj = req.body.obj.dataObj;
+    if (req.body.obj.internalNote3) {
+      dataObj.item_data.internal_note_3 = req.body.obj.internalNote3;
+    }
+    if (req.body.obj.replacementCost) {
+      dataObj.item_data.replacement_cost = req.body.obj.replacementCost;
+    }
+    if (req.body.obj.provenance) {
+      dataObj.item_data.provenance = req.body.obj.provenance;
+    }
+    if (req.body.obj.condition) {
+      dataObj.item_data.condition = req.body.obj.condition;
+    }
+
     res.status(200);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
