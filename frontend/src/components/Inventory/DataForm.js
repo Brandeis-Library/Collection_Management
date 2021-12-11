@@ -7,12 +7,24 @@ class DataFormContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      note3: "",
+      note3: this.props.intNote3,
       price: "",
-      provenance: "",
+      provenance: "JCR",
       condition: "",
     };
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.intNote3 !== prevProps.intNote3) {
+  //     this.setState({ note3: this.props.note3 });
+  //   }
+  //   this.setState({
+  //     note3: this.props.note3,
+  //     price: this.props.price,
+  //     provenance: this.props.provenance,
+  //     condition: this.props.condition,
+  //   });
+  // }
 
   handleInputChange = (event) => {
     //const target = event.target;
@@ -30,7 +42,7 @@ class DataFormContainer extends Component {
     //const obj = this.props.dataObj
     this.props.updateItemForm({
       dataObj: this.props.dataObj,
-      internalNote3: this.state.note3,
+      internalNote3: this.state.intNote3,
       replacementCost: this.state.price,
       provenance: this.state.provenance,
       condition: this.state.condition,
@@ -46,7 +58,7 @@ class DataFormContainer extends Component {
       fontSize: "15px",
     };
 
-    //console.log("this.props for DataForm +++++++++++++ ", this.props);
+    console.log("this.props for DataForm +++++++++++++ ", this.props);
     return (
       <React.Fragment>
         <h5>Update Item Information</h5>
@@ -57,7 +69,7 @@ class DataFormContainer extends Component {
             <input
               name="note3"
               type="text"
-              value={this.state.note3}
+              value={this.props.note3}
               onChange={this.handleInputChange}
             />
           </label>
@@ -81,7 +93,7 @@ class DataFormContainer extends Component {
               value={this.state.value}
               onChange={this.handleInputChange}
               type="text">
-              <option value="">None</option>
+              <option value="-">None</option>
               <option value="JCR">Jewish Cultural Reconstruction</option>
             </select>
           </label>
@@ -94,7 +106,7 @@ class DataFormContainer extends Component {
               value={this.state.value}
               onChange={this.handleInputChange}
               type="text">
-              <option value="">None</option>
+              <option value="-">None</option>
               <option value="BRITTLE">Brittle</option>
               <option value="DAMAGED">Damaged</option>
               <option value="DETERIORATING">Deteriorating</option>
@@ -119,10 +131,10 @@ class DataFormContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // inventory: state.inventory.inventory,
-    // barcode: state.inventory.barcode,
-    // barcode2: state.inventory.barcode2,
-    // title: state.inventory.title,
+    intNote3: state.inventory.internalNote3,
+    condition: state.inventory.condition,
+    provenance: state.inventory.provenance,
+    price: state.inventory.price,
     dataObj: state.inventory.dataObjTotal,
   };
 };

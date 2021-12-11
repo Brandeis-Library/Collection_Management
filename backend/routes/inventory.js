@@ -57,7 +57,7 @@ router.put("/itemform", async function (req, res) {
     if (req.body.obj.condition) {
       dataObj.item_data.condition = req.body.obj.condition;
     }
-
+    console.log("updated dataObj -------- ", dataObj);
     res.status(200);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
@@ -99,7 +99,7 @@ router.put("/", async function (req, res) {
         process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
       dataObj,
     );
-    console.log("data --------------------- ", data);
+    //console.log("data --------------------- ", data);
     res.json(data);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
