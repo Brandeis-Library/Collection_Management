@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const retrieveDataItems = require("../helperFunctions/retrieveItemData");
+const replacementCost = require("../helperFunctions/replacmentCost");
 
 // define the home page route
 
@@ -64,29 +65,20 @@ router.put("/itemform", async function (req, res) {
     res.send(error);
   }
 });
-
+// Route to do autoupdate of Inventory Date and Check Replacement Cost
 router.put("/", async function (req, res) {
   try {
     //console.log("Inventory main put route - req.body ++++++ )", req.body.respDataObj);
     const dataObj = req.body.respDataObj.dataObjTotal;
     //console.log("dataObj item-data", dataObj.item_data);
 
+    let cost = dataObj.item_data.replacement_cost;
+    cost = await replacementCost(cost);
+    dataObj.item_data.replacement_cost = cost;
+
     const date = new Date();
-    //req.body.resp.dataitem_data.inventory_date = date;
     dataObj.item_data.inventory_date = date;
-    //console.log("dataObj", dataObj);
-    //console.log(
-    //   "update item url",
-    //   process.env.EXLIBRIS_API_ROOT +
-    //     "/almaws/v1/bibs/" +
-    //     dataObj.bib_data.mms_id +
-    //     "/holdings/" +
-    //     dataObj.holding_data.holding_id +
-    //     "/items/" +
-    //     dataObj.item_data.pid +
-    //     "?apikey=" +
-    //     process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
-    // );
+
     let { data } = await axios.put(
       process.env.EXLIBRIS_API_ROOT +
         "/almaws/v1/bibs/" +
@@ -99,7 +91,7 @@ router.put("/", async function (req, res) {
         process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
       dataObj,
     );
-    //console.log("data --------------------- ", data);
+    console.log("data --------------------- ", data);
     res.json(data);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);

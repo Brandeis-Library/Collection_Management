@@ -73,6 +73,7 @@ export function updateItem(dataObj) {
     payload: {
       dataObjTotal: dataObj,
       inventoryDate: dataObj.item_data.inventory_date,
+      replacementCost: dataObj.item_data.replacement_cost,
     },
   };
 }

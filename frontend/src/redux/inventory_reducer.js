@@ -55,12 +55,13 @@ export const inventoryReducer = (state = initialState, action) => {
         provenance: action.payload.provenance,
         condition: action.payload.condition,
       };
-      case UPDATEITEM:
-        return {
-          ...state,
-          dataObjTotal: action.payload.dataObjTotal, 
-          inventoryDate: action.payload.inventoryDate,
-        }
+    case UPDATEITEM:
+      return {
+        ...state,
+        dataObjTotal: action.payload.dataObjTotal,
+        inventoryDate: action.payload.inventoryDate,
+        replacementCost: action.payload.replacementCost,
+      };
     default:
       return state;
   }
