@@ -56,7 +56,7 @@ export function sendBarCode(dataObj) {
       permLoc: dataObj.permLoc,
       tempLib: dataObj.tempLib,
       tempLoc: dataObj.tempLoc,
-      string583a: dataObj.string583a,
+      //string583a: dataObj.string583a,
       inventoryDate: dataObj.inventoryDate,
       internalNote3: dataObj.internalNote3,
       link: dataObj.link,

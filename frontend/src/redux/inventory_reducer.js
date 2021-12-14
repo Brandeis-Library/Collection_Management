@@ -47,7 +47,7 @@ export const inventoryReducer = (state = initialState, action) => {
         permLoc: action.payload.permLoc,
         tempLib: action.payload.tempLib,
         tempLoc: action.payload.tempLoc,
-        string583a: action.payload.string583a,
+        //string583a: action.payload.string583a,
         inventoryDate: action.payload.inventoryDate,
         internalNote3: action.payload.internalNote3,
         link: action.payload.link,
