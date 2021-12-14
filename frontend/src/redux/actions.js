@@ -5,6 +5,7 @@ import {
   SENDBARCODE,
   UPDATEITEM,
   UPDATEITEMFORM,
+  FIND538A,
 } from "./actionTypes";
 import axios from "axios";
 
@@ -37,6 +38,7 @@ export function sendBarcodeToBackend(barcode) {
       respDataObj,
     });
     dispatch(updateItem(responseWithUpdate.data));
+    dispatch(actionField(responseWithUpdate.data));
   };
 }
 
@@ -56,7 +58,7 @@ export function sendBarCode(dataObj) {
       permLoc: dataObj.permLoc,
       tempLib: dataObj.tempLib,
       tempLoc: dataObj.tempLoc,
-      //string583a: dataObj.string583a,
+      string583a: "",
       inventoryDate: dataObj.inventoryDate,
       internalNote3: dataObj.internalNote3,
       link: dataObj.link,
@@ -86,13 +88,23 @@ export function updateItemForm(obj) {
     console.log("responseWithUpdate ", responseWithUpdate);
     return responseWithUpdate;
   };
-  // return {
-  //   type: UPDATEITEMFORM,
-  //   payload: {
-  //     internalNote3: obj.internalNote3,
-  //     replacementCost: obj.replacementCost,
-  //     provenance: obj.provenance,
-  //     condition: obj.condition,
-  //   },
-  // };
+}
+
+export function actionField(obj) {
+  return async function find538aThunk(dispatch, getState) {
+    const text = await axios.put("http://localhost:4000/api/v1/inventory/538Text", {
+      obj,
+    });
+    console.log("538a Text ************  ", text);
+    dispatch(updateaActionText(text));
+  };
+}
+
+export function updateaActionText(text) {
+  return {
+    type: FIND538A,
+    payload: {
+      string583a: text,
+    },
+  };
 }

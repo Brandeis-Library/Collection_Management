@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, BARCODE, SENDBARCODE, UPDATEITEM } from "./actionTypes.js";
+import { INCREMENT, DECREMENT, BARCODE, SENDBARCODE, UPDATEITEM, FIND538A } from "./actionTypes.js";
 
 const initialState = {
   inventory: 4,
@@ -32,6 +32,8 @@ export const inventoryReducer = (state = initialState, action) => {
       return { ...state, inventory: state.inventory - 1 };
     case BARCODE:
       return { ...state, barcode: action.payload.text.text };
+    case FIND538A:
+      return { ...state, string583a: action.payload.string583a.data };
     case SENDBARCODE:
       return {
         ...state,
@@ -47,7 +49,7 @@ export const inventoryReducer = (state = initialState, action) => {
         permLoc: action.payload.permLoc,
         tempLib: action.payload.tempLib,
         tempLoc: action.payload.tempLoc,
-        //string583a: action.payload.string583a,
+        string583a: "",
         inventoryDate: action.payload.inventoryDate,
         internalNote3: action.payload.internalNote3,
         link: action.payload.link,

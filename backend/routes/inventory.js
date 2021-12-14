@@ -4,6 +4,8 @@ const router = express.Router();
 const axios = require("axios");
 const dotenv = require("dotenv");
 dotenv.config();
+const xpath = require("xpath");
+const dom = require("xmldom").DOMParser;
 
 const retrieveDataItems = require("../helperFunctions/retrieveItemData");
 const replacementCost = require("../helperFunctions/replacmentCost");
@@ -42,9 +44,9 @@ router.post("/", async function (req, res) {
 
 router.put("/itemform", async function (req, res) {
   try {
-    console.log("inside iventory itemform route -----------------");
-    console.log("req.body", req.body);
-    console.log("itemform dataObj from the frontend ------------- ", req.body.obj.internalNote3);
+    // console.log("inside iventory itemform route -----------------");
+    // console.log("req.body", req.body);
+    // console.log("itemform dataObj from the frontend ------------- ", req.body.obj.internalNote3);
     const dataObj = req.body.obj.dataObj;
     if (req.body.obj.internalNote3) {
       dataObj.item_data.internal_note_3 = req.body.obj.internalNote3;
@@ -65,6 +67,46 @@ router.put("/itemform", async function (req, res) {
     res.send(error);
   }
 });
+
+// Route to retreive 538a field data.
+router.put("/538Text", async function (req, res) {
+  try {
+    const mmsId = req.body.obj.bib_data.mms_id;
+    const holdingId = req.body.obj.holding_data.holding_id;
+    //item retrieve query to Alma backend. Holdings API URL, Item Barcode, and APIKEY
+    const { data } = await axios.get(
+      process.env.EXLIBRIS_API_ROOT +
+        process.env.EXLIBRIS_API_PATH_HOLDINGS +
+        mmsId +
+        "/holdings/" +
+        holdingId +
+        "?apikey=" +
+        process.env.EXLIBRIS_API_BIB_GET_KEY,
+    );
+
+    //pulling out the XML hodings data and searching to see if 'committed to retain' is in the text. If the text is found returning the text to the front end to show.
+    let string583a = "";
+    let document = data.anies[0];
+    document = document.toString();
+    console.log("document", document);
+    let xmlParsedDoc = await new dom().parseFromString(document);
+    string583a = xpath.select("//datafield[@tag=583]/subfield", xmlParsedDoc);
+    console.log("string583a----------   ", string583a);
+    if (string583a.length === 0) {
+      string583a = "Testing 538a";
+    } else {
+      string583a = string583a[0].toString();
+      string583a = string583a.replace(/<subfield(.*?)>/g, "");
+      string583a = string583a.replace(/<\/subfield>/g, "");
+    }
+
+    res.send(string583a);
+  } catch (error) {
+    console.log("updateItemErrorAPI Error:   ", error.message);
+    res.send(error);
+  }
+});
+
 // Route to do autoupdate of Inventory Date and Check Replacement Cost
 router.put("/", async function (req, res) {
   try {
