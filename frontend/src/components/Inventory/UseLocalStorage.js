@@ -10,12 +10,22 @@ export default class UseSLocaltorage extends Component {
     this.setState({ firstCallNum: event.target.value });
   };
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.firstCallNum) {
+      //this.props.firstCallNum({ text: this.state.barcode });
+      this.setState({ firstCallNum: "" });
+    } else {
+      alert("Please enter a LC Call Number.");
+    }
+  };
+
   render() {
     console.log("firstCallNum", this.state.firstCallNum);
     return (
       <div>
         <React.Fragment>UseLocalStorage Component</React.Fragment> <br />
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label>
             Enter First Call #:
             <input
