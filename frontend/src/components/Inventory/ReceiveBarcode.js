@@ -18,7 +18,10 @@ class ReceiveBarcodeContainer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.barcode && (this.state.barcode.length <= 14 || this.state.barcode.length >= 13)) {
+    if (
+      this.state.barcode &&
+      (this.state.barcode.length <= 14 || this.state.barcode.length >= 13)
+    ) {
       this.props.barcode({ text: this.state.barcode });
       this.props.sendBarcodeToBackend({ text: this.state.barcode });
       this.setState({ barcode: "" });

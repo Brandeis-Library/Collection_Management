@@ -3,8 +3,14 @@ import React, { Component } from "react";
 export default class UseSLocaltorage extends Component {
   constructor(props) {
     super(props);
-    this.state = { firstCallNum: null };
+    this.state = { firstCallNum: "" };
   }
+
+  handleChange = (event) => {
+    this.setState({ firstCallNum: event.target.value });
+    console.log("firstCallNum", this.state.firstCallNum);
+  };
+
   render() {
     return (
       <div>
@@ -12,7 +18,13 @@ export default class UseSLocaltorage extends Component {
         <form>
           <label>
             Enter First Call #:
-            <input type="text" name="firstCarNum" />
+            <input
+              type="text"
+              name="firstCallNum"
+              value={this.state.firstCallNum}
+              onChange={this.handleChange}
+              placeholder="ex: DC611.B848 ‡b H84 1997"
+            />
           </label>
           <input type="submit" value="Submit" />
         </form>
