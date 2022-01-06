@@ -12,7 +12,9 @@ export default class UseSLocaltorage extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     if (this.state.firstCallNum) {
+      localStorage.setItem("CallNumforTest", this.state.firstCallNum);
       //this.props.firstCallNum({ text: this.state.barcode });
       this.setState({ firstCallNum: "" });
     } else {
@@ -40,7 +42,8 @@ export default class UseSLocaltorage extends Component {
           <input type="submit" value="Submit" />
         </form>
         <br />
-        Enter call number local state: {this.state.firstCallNum}
+        Current LC Call # to check against local state: {this.state.firstCallNum} <br />
+        Current LC Call # to check against local storage {localStorage.getItem("CallNumforTest")}
       </div>
     );
   }
