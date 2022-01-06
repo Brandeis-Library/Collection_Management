@@ -13,7 +13,6 @@ class ReceiveBarcodeContainer extends Component {
 
   handleChange = (event) => {
     this.setState({ barcode: event.target.value });
-    console.log(this.state.barcode);
   };
 
   handleSubmit = (event) => {

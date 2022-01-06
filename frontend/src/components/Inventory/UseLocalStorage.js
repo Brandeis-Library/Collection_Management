@@ -8,10 +8,10 @@ export default class UseSLocaltorage extends Component {
 
   handleChange = (event) => {
     this.setState({ firstCallNum: event.target.value });
-    console.log("firstCallNum", this.state.firstCallNum);
   };
 
   render() {
+    console.log("firstCallNum", this.state.firstCallNum);
     return (
       <div>
         <React.Fragment>UseLocalStorage Component</React.Fragment> <br />
@@ -26,8 +26,11 @@ export default class UseSLocaltorage extends Component {
               placeholder="ex: DC611.B848 ‡b H84 1997"
             />
           </label>
+
           <input type="submit" value="Submit" />
         </form>
+        <br />
+        Enter call number local state: {this.state.firstCallNum}
       </div>
     );
   }
