@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DataDisplay from "./DataDisplay";
 import DataForm from "./DataForm";
+import UseSLocaltorage from "./UseLocalStorage";
 
 export default class TilesHolder extends Component {
   render() {
@@ -24,6 +25,10 @@ export default class TilesHolder extends Component {
         </div>
         <div style={floatChild}>
           <DataForm />
+        </div>
+        <br />
+        <div>
+          <UseSLocaltorage />
         </div>
       </div>
     );
