@@ -5,3 +5,4 @@ export const SENDBARCODE = "SENDBARCODE";
 export const UPDATEITEM = "UPDATEITEM";
 export const UPDATEITEMFORM = "UPDATEITEMFORM";
 export const FIND538A = "FIND538A";
+export const UPDATEMESSAGE = "UPDATEMESSAGE";

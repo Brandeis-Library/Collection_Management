@@ -6,6 +6,7 @@ import {
   UPDATEITEM,
   UPDATEITEMFORM,
   FIND538A,
+  UPDATEMESSAGE,
 } from "./actionTypes";
 import axios from "axios";
 
@@ -24,6 +25,13 @@ export function barcode(text) {
   return {
     type: BARCODE,
     payload: { text: text },
+  };
+}
+
+export function updateMessage(obj) {
+  return {
+    type: UPDATEMESSAGE,
+    payload: obj,
   };
 }
 
