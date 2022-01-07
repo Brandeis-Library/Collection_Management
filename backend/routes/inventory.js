@@ -104,12 +104,16 @@ router.put("/538Text", async function (req, res) {
 });
 
 // route to do the checking of order of call numbers for order of books on the shelves.
-router.put("/callNumCheck", async function (req, res) {
+router.get("/callNumCheck", async function (req, res) {
   try {
     //const dataObj = req.body.data;
     //let firstCal = localStorage.getItem("firstCallNum "); Does not work, Needs to be sent and changed on the front end.
+    const x = "HF5381 .S5145 2008";
+    const y = "PE1479 .B87 O93 1993";
 
-    res.json({ status: true });
+    let result = await lc.lte(x, y); /* true */
+
+    res.json({ status: result });
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
     res.send(error);
