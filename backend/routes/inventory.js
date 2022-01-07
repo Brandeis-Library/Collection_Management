@@ -9,6 +9,7 @@ const dom = require("xmldom").DOMParser;
 
 const retrieveDataItems = require("../helperFunctions/retrieveItemData");
 const replacementCost = require("../helperFunctions/replacmentCost");
+const { response } = require("express");
 
 // define the home page route
 
@@ -101,6 +102,16 @@ router.put("/538Text", async function (req, res) {
     }
 
     res.send(string583a);
+  } catch (error) {
+    console.log("updateItemErrorAPI Error:   ", error.message);
+    res.send(error);
+  }
+});
+
+router.put("/callNumCheck", async function (req, res) {
+  try {
+    const dataObj = req.body.data;
+    res.json({ status: true });
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
     res.send(error);
