@@ -6,18 +6,13 @@ const dotenv = require("dotenv");
 dotenv.config();
 const xpath = require("xpath");
 const dom = require("xmldom").DOMParser;
+var lc = require("lc_call_number_compare");
 
 const retrieveDataItems = require("../helperFunctions/retrieveItemData");
 const replacementCost = require("../helperFunctions/replacmentCost");
 const { response } = require("express");
 
 // define the home page route
-
-// generic get route to test avaialablity
-router.get("/", function (req, res) {
-  //console.log("req.body.barcode)",req.body.barcode)
-  res.status(200).send("Inventory home page");
-});
 
 // route to retrieve record by barcode
 router.post("/", async function (req, res) {
@@ -108,9 +103,12 @@ router.put("/538Text", async function (req, res) {
   }
 });
 
+// route to do the checking of order of call numbers for order of books on the shelves.
 router.put("/callNumCheck", async function (req, res) {
   try {
-    const dataObj = req.body.data;
+    //const dataObj = req.body.data;
+    //let firstCal = localStorage.getItem("firstCallNum "); Does not work, Needs to be sent and changed on the front end.
+
     res.json({ status: true });
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
@@ -150,6 +148,12 @@ router.put("/", async function (req, res) {
     console.log("updateItemErrorAPI Error:   ", error.message);
     res.send(error);
   }
+});
+
+// generic get route to test avaialablity
+router.get("/", function (req, res) {
+  //console.log("req.body.barcode)",req.body.barcode)
+  res.status(200).send("Inventory home page");
 });
 
 module.exports = router;
