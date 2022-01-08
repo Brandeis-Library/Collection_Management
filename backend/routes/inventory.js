@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const xpath = require("xpath");
 const dom = require("xmldom").DOMParser;
+const lc = require("lc_call_number_compare");
 
 const retrieveDataItems = require("../helperFunctions/retrieveItemData");
 const replacementCost = require("../helperFunctions/replacmentCost");
@@ -83,7 +84,7 @@ router.put("/538Text", async function (req, res) {
     let string583a = "";
     let document = data.anies[0];
     document = document.toString();
-    console.log("document", document);
+    //console.log("document", document);
     let xmlParsedDoc = await new dom().parseFromString(document);
     string583a = xpath.select("//datafield[@tag=583]/subfield", xmlParsedDoc);
     //console.log("string583a----------   ", string583a);
@@ -103,14 +104,19 @@ router.put("/538Text", async function (req, res) {
 });
 
 // route to do the checking of order of call numbers for order of books on the shelves.
-router.get("/callNumCheck", async function (req, res) {
+router.put("/callNumCheck", async function (req, res) {
   try {
-    //const dataObj = req.body.data;
-    //let firstCal = localStorage.getItem("firstCallNum "); Does not work, Needs to be sent and changed on the front end.
-    const x = "HF5381 .S5145 2008";
-    const y = "PE1479 .B87 O93 1993";
+    const dataObj = req.body;
+
+    console.log("dataObj from callNumbCheck ---------", dataObj);
+    //let firstCal cd  Does not work, Needs to be sent and changed on the front end.
+    const x = req.body.x;
+    const y = req.body.y;
+    console.log("x & y from callNumbCheck ---------", x, y);
 
     let result = await lc.lte(x, y); /* true */
+
+    console.log("result +++++++++++++++++", result);
 
     res.json({ status: result });
   } catch (error) {
@@ -145,7 +151,7 @@ router.put("/", async function (req, res) {
         process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
       dataObj,
     );
-    console.log("data --------------------- ", data);
+    //console.log("data --------------------- ", data);
     res.json(data);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
