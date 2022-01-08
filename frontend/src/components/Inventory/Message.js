@@ -2,20 +2,24 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class MessageContainer extends Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.callNum !== prevProps.callNum) {
+      console.log("inside messagecontainer component did update method.");
+    }
+  }
+
   render() {
     return (
-      <div>
-        <React.Fragment>
-          {this.props.message.message}
-          {this.props.message.status}
-        </React.Fragment>
-      </div>
+      <React.Fragment>
+        {this.props.message.message}
+        {this.props.message.status}
+      </React.Fragment>
     );
   }
 }
 const mapStateToProps = (state) => {
   return {
-    message: state.invenory.message,
+    message: state.inventory.message,
     //   barcode2: state.inventory.barcode2,
     //   title: state.inventory.title,
     //   // dataObjTotal: state.inventory.dataObjTotal,
@@ -23,7 +27,7 @@ const mapStateToProps = (state) => {
     //   holdingID: state.inventory.holdingID,
     //   itemID: state.inventory.itemID,
     //   status: state.inventory.status,
-    //   callNum: state.inventory.callNum,
+    callNum: state.inventory.callNum,
     //   permLib: state.inventory.permLib,
     //   permLoc: state.inventory.permLoc,
     //   tempLib: state.inventory.tempLib,

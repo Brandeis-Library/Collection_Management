@@ -6,7 +6,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 const xpath = require("xpath");
 const dom = require("xmldom").DOMParser;
-var lc = require("lc_call_number_compare");
 
 const retrieveDataItems = require("../helperFunctions/retrieveItemData");
 const replacementCost = require("../helperFunctions/replacmentCost");

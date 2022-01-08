@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import MessageContainer from "./Message";
 import { Button } from "react-bootstrap";
 import { barcode, sendBarcodeToBackend } from "../../redux/actions";
 
@@ -47,6 +48,7 @@ class ReceiveBarcodeContainer extends Component {
 
     return (
       <div>
+        <MessageContainer />
         <form onSubmit={this.handleSubmit}>
           <label style={labelStyle}>
             Barcode:{" "}
