@@ -74,7 +74,7 @@ export const inventoryReducer = (state = initialState, action) => {
         replacementCost: action.payload.replacementCost,
       };
     case UPDATEMESSAGE:
-      return { ...state, message: action.payload.obj };
+      return { ...state, message: { ...action.payload.obj } };
     default:
       return state;
   }

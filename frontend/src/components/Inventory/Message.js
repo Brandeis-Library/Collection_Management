@@ -1,25 +1,51 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { updateMessage } from "../../redux/actions";
+import axios from "axios";
 class MessageContainer extends Component {
-  componentDidUpdate(prevProps) {
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0 };
+  }
+
+  async componentDidUpdate(prevProps) {
     if (this.props.callNum !== prevProps.callNum) {
       console.log("inside messagecontainer component did update method.");
+      const obj = {};
+      const x = localStorage.getItem("CallNumforTest");
+      const y = this.props.callNum;
+      const response = await axios.put("http://localhost:4000/api/v1/inventory/callNumCheck", {
+        x,
+        y,
+      });
+      console.log("RESpONSE++++++++++++++++++++", response);
+      const result = response.data.status;
+      console.log("result ---------", result);
+      if (result) {
+        obj.message = "Item is in the proper order!";
+        localStorage.setItem("CallNumforTest", y);
+      } else {
+        obj.message = "Item is out of order!!! Please reshelve in the proper place!";
+      }
+      obj.status = result;
+      console.log("obj from componentDidUpdate from Message.js +++++++++++++", obj);
+      this.props.updateMessage({ obj });
     }
   }
 
   render() {
     return (
       <React.Fragment>
-        {this.props.message.message}
-        {this.props.message.status}
+        Message: {this.props.message} Status:{String(this.props.status)} Call Num:
+        {this.props.callNum}
       </React.Fragment>
     );
   }
 }
 const mapStateToProps = (state) => {
   return {
-    message: state.inventory.message,
+    message: state.inventory.message.message,
+    status: state.inventory.message.status,
     //   barcode2: state.inventory.barcode2,
     //   title: state.inventory.title,
     //   // dataObjTotal: state.inventory.dataObjTotal,
@@ -42,4 +68,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(MessageContainer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateMessage: (obj) => dispatch(updateMessage(obj)),
+    //sendBarcodeToBackend: (text) => dispatch(sendBarcodeToBackend(text)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageContainer);
