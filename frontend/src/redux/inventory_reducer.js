@@ -30,7 +30,7 @@ const initialState = {
   replacementCost: "",
   provenance: "",
   condition: "",
-  message: { status: "empty", message: "none" },
+  message: { status: "empty", message: "none", localStorageCallNum: "ZZ 9999 .Z99 2022" },
 };
 
 export const inventoryReducer = (state = initialState, action) => {

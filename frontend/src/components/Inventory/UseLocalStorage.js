@@ -1,26 +1,32 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { updateMessage } from "../../redux/actions";
 
-export default class UseSLocaltorage extends Component {
+class UseLocalStorageContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { firstCallNum: "", localStorageState: "" };
+    this.state = { firstCallNum: "" };
   }
 
   handleChange = (event) => {
     this.setState({ firstCallNum: event.target.value });
   };
 
-  componentDidMount() {
-    this.setState({ localStorageState: localStorage.getItem("CallNumforTest") });
-  }
+  // componentDidMount() {
+  //   this.setState({ localStorageState: localStorage.getItem("CallNumforTest") });
+  // }
 
   handleSubmit = (event) => {
     event.preventDefault();
 
     if (this.state.firstCallNum) {
       localStorage.setItem("CallNumforTest", this.state.firstCallNum);
-
-      this.setState({ localStorageState: localStorage.getItem("CallNumforTest") });
+      const obj = {
+        status: this.props.status,
+        message: this.props.message,
+        localStorageCallNum: this.state.firstCallNum,
+      };
+      this.props.updateMessage({ obj });
       this.setState({ firstCallNum: "" });
     } else {
       alert("Please enter a LC Call Number.");
@@ -32,7 +38,7 @@ export default class UseSLocaltorage extends Component {
     return (
       <div>
         {/* <React.Fragment>UseLocalStorage Component</React.Fragment> <br /> */}
-        Current LC Call #: {this.state.localStorageState} <br />
+        Current LC Call #: {this.props.callNum} <br />
         <form onSubmit={this.handleSubmit}>
           <label>
             Enter First Call #:
@@ -53,3 +59,19 @@ export default class UseSLocaltorage extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    message: state.inventory.message.message,
+    status: state.inventory.message.status,
+    callNum: state.inventory.message.localStorageCallNum,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateMessage: (obj) => dispatch(updateMessage(obj)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UseLocalStorageContainer);

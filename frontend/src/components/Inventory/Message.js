@@ -8,11 +8,20 @@ class MessageContainer extends Component {
     this.state = { counter: 0 };
   }
 
+  componentDidMount() {
+    const obj = {
+      status: this.props.status,
+      message: this.props.message,
+      localStorageCallNum: localStorage.getItem("CallNumforTest"),
+    };
+    this.props.updateMessage({ obj });
+  }
+
   async componentDidUpdate(prevProps) {
     if (this.props.callNum !== prevProps.callNum) {
       console.log("inside messagecontainer component did update method.");
       const obj = {};
-      const x = localStorage.getItem("CallNumforTest");
+      const x = await localStorage.getItem("CallNumforTest");
       const y = this.props.callNum;
       const response = await axios.put("http://localhost:4000/api/v1/inventory/callNumCheck", {
         x,
@@ -24,8 +33,10 @@ class MessageContainer extends Component {
       if (result) {
         obj.message = "Item is in the proper order!";
         localStorage.setItem("CallNumforTest", y);
+        obj.localStorageCallNum = this.props.callNum;
       } else {
         obj.message = "Item is out of order!!! Please reshelve in the proper place!";
+        //obj.localStorageCallNum = this.props.callNum;
       }
       obj.status = result;
       console.log("obj from componentDidUpdate from Message.js +++++++++++++", obj);
