@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateMessage } from "../../redux/actions";
+import { Button } from "react-bootstrap";
 
 class UseLocalStorageContainer extends Component {
   constructor(props) {
@@ -12,9 +13,16 @@ class UseLocalStorageContainer extends Component {
     this.setState({ firstCallNum: event.target.value });
   };
 
-  // componentDidMount() {
-  //   this.setState({ localStorageState: localStorage.getItem("CallNumforTest") });
-  // }
+  handleClear = (event) => {
+    event.preventDefault();
+    localStorage.removeItem("CallNumforTest");
+    const obj = {
+      status: this.props.status,
+      message: this.props.message,
+      localStorageCallNum: "",
+    };
+    this.props.updateMessage({ obj });
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -37,8 +45,7 @@ class UseLocalStorageContainer extends Component {
     console.log("firstCallNum", this.state.firstCallNum);
     return (
       <div>
-        {/* <React.Fragment>UseLocalStorage Component</React.Fragment> <br /> */}
-        Current LC Call #: {this.props.callNum} <br />
+        Current Call #: {this.props.callNum} <br />
         <form onSubmit={this.handleSubmit}>
           <label>
             Enter First Call #:
@@ -49,12 +56,16 @@ class UseLocalStorageContainer extends Component {
               onChange={this.handleChange}
               placeholder="ex: DC611.B848 ‡b H84 1997"
             />
-          </label>
-
-          <input type="submit" value="Submit" />
+          </label>{" "}
+          <br />
+          <Button className="btn btn-success" type="submit" value="Submit">
+            Enter Call #{" "}
+          </Button>{" "}
+          <Button className="btn btn-warning" type="clear" value="Clear" onClick={this.handleClear}>
+            Clear Call #{" "}
+          </Button>
         </form>
         <br />
-        {/* Current LC Call # to check against local storage {localStorage.getItem("CallNumforTest")} */}
       </div>
     );
   }
