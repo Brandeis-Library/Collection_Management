@@ -27,7 +27,7 @@ export default class TilesHolder extends Component {
           <DataForm />
         </div>
         <br />
-        <div>
+        <div style={floatChild}>
           <UseSLocaltorage />
         </div>
       </div>

@@ -45,10 +45,10 @@ class UseLocalStorageContainer extends Component {
     console.log("firstCallNum", this.state.firstCallNum);
     return (
       <div>
-        Current Call #: {this.props.callNum} <br />
+        <h5> Current Call #: {this.props.callNum} </h5>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Enter First Call #:
+            Enter First Call #:{" "}
             <input
               type="text"
               name="firstCallNum"
@@ -57,6 +57,7 @@ class UseLocalStorageContainer extends Component {
               placeholder="ex: DC611.B848 ‡b H84 1997"
             />
           </label>{" "}
+          <br />
           <br />
           <Button className="btn btn-success" type="submit" value="Submit">
             Enter Call #{" "}

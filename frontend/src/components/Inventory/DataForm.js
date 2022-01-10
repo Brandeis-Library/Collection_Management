@@ -14,18 +14,6 @@ class DataFormContainer extends Component {
     };
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.intNote3 !== prevProps.intNote3) {
-  //     this.setState({ note3: this.props.note3 });
-  //   }
-  //   this.setState({
-  //     note3: this.props.note3,
-  //     price: this.props.price,
-  //     provenance: this.props.provenance,
-  //     condition: this.props.condition,
-  //   });
-  // }
-
   handleInputChange = (event) => {
     //const target = event.target;
     //const value = target.type === 'checkbox' ? target.checked : target.value;
