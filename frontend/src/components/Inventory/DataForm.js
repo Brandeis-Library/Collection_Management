@@ -15,11 +15,8 @@ class DataFormContainer extends Component {
   }
 
   handleInputChange = (event) => {
-    //const target = event.target;
-    //const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = event.target.name;
     const value = event.target.value;
-    //console.log("++++++++++ Target----", event.target, "name", event.target.name, "value", event.target.value);
     this.setState({
       [name]: value,
     });
@@ -27,7 +24,6 @@ class DataFormContainer extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    //const obj = this.props.dataObj
     this.props.updateItemForm({
       dataObj: this.props.dataObj,
       internalNote3: this.state.intNote3,
@@ -129,8 +125,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // barcode: (text) => dispatch(barcode(text)),
-    // sendBarcodeToBackend: (text) => dispatch(sendBarcodeToBackend(text)),
     updateItemForm: (obj) => {
       dispatch(updateItemForm(obj));
     },

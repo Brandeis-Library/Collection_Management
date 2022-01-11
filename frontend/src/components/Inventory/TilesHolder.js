@@ -6,7 +6,7 @@ import UseSLocaltorage from "./UseLocalStorage";
 export default class TilesHolder extends Component {
   render() {
     const floatContainer = {
-      padding: "20px",
+      padding: "10px",
     };
 
     const floatChild = {
@@ -26,6 +26,7 @@ export default class TilesHolder extends Component {
         <div style={floatChild}>
           <DataForm />
         </div>
+
         <br />
         <div style={floatChild}>
           <UseSLocaltorage />
