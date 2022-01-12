@@ -9,6 +9,11 @@ class MessageContainer extends Component {
   }
 
   componentDidMount() {
+    let locStor = localStorage.getItem("CallNumforTest");
+    if (!locStor) {
+      localStorage.setItem("CallNumforTest", "ZZ 9999 .Z99 2022");
+    }
+
     const obj = {
       status: this.props.status,
       message: this.props.message,
@@ -19,7 +24,7 @@ class MessageContainer extends Component {
 
   async componentDidUpdate(prevProps) {
     if (this.props.callNum !== prevProps.callNum) {
-      console.log("inside messagecontainer component did update method.");
+      //console.log("inside messagecontainer component did update method.");
       const obj = {};
       const x = await localStorage.getItem("CallNumforTest");
       const y = this.props.callNum;
@@ -34,12 +39,14 @@ class MessageContainer extends Component {
         obj.message = "Item is in the proper order!";
         localStorage.setItem("CallNumforTest", y);
         obj.localStorageCallNum = this.props.callNum;
+        obj.status = result;
       } else {
         obj.message = "Item is out of order!!! Please reshelve in the proper place!";
-        //obj.localStorageCallNum = this.props.callNum;
+        obj.status = result;
+        obj.localStorageCallNum = x;
       }
       obj.status = result;
-      console.log("obj from componentDidUpdate from Message.js +++++++++++++", obj);
+      //console.log("obj from componentDidUpdate from Message.js +++++++++++++", obj);
       this.props.updateMessage({ obj });
     }
   }
@@ -47,8 +54,15 @@ class MessageContainer extends Component {
   render() {
     return (
       <React.Fragment>
-        Message: {this.props.message} Status:{String(this.props.status)} Call Num:
-        {this.props.callNum}
+        {(() => {
+          if (this.props.message === "none") {
+            return <span></span>;
+          } else if (this.props.status === true && this.props.message) {
+            return <span>{this.props.message}</span>;
+          } else if (this.props.status === false) {
+            return <span>{this.props.message}</span>;
+          }
+        })()}
       </React.Fragment>
     );
   }
@@ -57,32 +71,14 @@ const mapStateToProps = (state) => {
   return {
     message: state.inventory.message.message,
     status: state.inventory.message.status,
-    //   barcode2: state.inventory.barcode2,
-    //   title: state.inventory.title,
-    //   // dataObjTotal: state.inventory.dataObjTotal,
-    //   mms_id: state.inventory.mms_id,
-    //   holdingID: state.inventory.holdingID,
-    //   itemID: state.inventory.itemID,
-    //   status: state.inventory.status,
+    callNumPrev: state.inventory.message.localStorageCallNum,
     callNum: state.inventory.callNum,
-    //   permLib: state.inventory.permLib,
-    //   permLoc: state.inventory.permLoc,
-    //   tempLib: state.inventory.tempLib,
-    //   tempLoc: state.inventory.tempLoc,
-    //   string583a: state.inventory.string583a,
-    //   inventoryDate: state.inventory.inventoryDate,
-    //   internalNote3: state.inventory.internalNote3,
-    //   link: state.inventory.link,
-    //   replacementCost: state.inventory.replacementCost,
-    //   provenance: state.inventory.provenance.desc,
-    //   condition: state.inventory.condition.desc,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     updateMessage: (obj) => dispatch(updateMessage(obj)),
-    //sendBarcodeToBackend: (text) => dispatch(sendBarcodeToBackend(text)),
   };
 };
 
