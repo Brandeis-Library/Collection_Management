@@ -13,20 +13,27 @@ class ReceiveBarcodeContainer extends Component {
   }
 
   handleChange = (event) => {
-    this.setState({ barcode: event.target.value });
+    const barcodeIntermediate = String(event.target.value);
+    this.setState({ barcode: barcodeIntermediate });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      this.state.barcode &&
-      (this.state.barcode.length <= 14 || this.state.barcode.length >= 13)
-    ) {
-      this.props.barcode({ text: this.state.barcode });
-      this.props.sendBarcodeToBackend({ text: this.state.barcode });
-      this.setState({ barcode: "" });
+    if (this.state.barcode !== this.props.barcode) {
+      alert("barcodes match. please submit a different barcode.");
     } else {
-      alert("Please enter a properly formatted barcode.");
+      if (
+        this.state.barcode &&
+        this.state.barcode !== this.props.barcode &&
+        this.state.barcode.length <= 14 &&
+        this.state.barcode.length >= 13
+      ) {
+        this.props.barcode({ text: this.state.barcode });
+        this.props.sendBarcodeToBackend({ text: this.state.barcode });
+        this.setState({ barcode: "" });
+      } else {
+        alert("Please enter a properly formatted barcode.");
+      }
     }
   };
 
@@ -75,11 +82,11 @@ class ReceiveBarcodeContainer extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     //inventory: state.inventory.inventory,
-//   };
-// };
+const mapStateToProps = (state) => {
+  return {
+    barcode: state.inventory.barcode2,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -88,4 +95,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ReceiveBarcodeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ReceiveBarcodeContainer);

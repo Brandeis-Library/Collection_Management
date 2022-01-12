@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateMessage } from "../../redux/actions";
 import axios from "axios";
+import { getDropdownMenuPlacement } from "react-bootstrap/esm/DropdownMenu";
 class MessageContainer extends Component {
   constructor(props) {
     super(props);
@@ -52,15 +53,29 @@ class MessageContainer extends Component {
   }
 
   render() {
+    const goodMessage = {
+      color: "white",
+      backgroundColor: "green",
+      height: "30px",
+      padding: "2px",
+    };
+
+    const badMessage = {
+      color: "white",
+      backgroundColor: "red",
+      height: "30px",
+      padding: "2px",
+    };
+
     return (
       <React.Fragment>
         {(() => {
           if (this.props.message === "none") {
             return <span></span>;
           } else if (this.props.status === true && this.props.message) {
-            return <span>{this.props.message}</span>;
+            return <div style={goodMessage}>{this.props.message}</div>;
           } else if (this.props.status === false) {
-            return <span>{this.props.message}</span>;
+            return <div style={badMessage}>{this.props.message}</div>;
           }
         })()}
       </React.Fragment>
