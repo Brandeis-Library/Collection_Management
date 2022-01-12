@@ -19,21 +19,27 @@ class ReceiveBarcodeContainer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.barcode !== this.props.barcode) {
-      alert("barcodes match. please submit a different barcode.");
-    } else {
-      if (
-        this.state.barcode &&
-        this.state.barcode !== this.props.barcode &&
-        this.state.barcode.length <= 14 &&
-        this.state.barcode.length >= 13
-      ) {
-        this.props.barcode({ text: this.state.barcode });
-        this.props.sendBarcodeToBackend({ text: this.state.barcode });
-        this.setState({ barcode: "" });
-      } else {
+    try {
+      if (this.state.barcode === this.props.barcode) {
+        alert("barcodes match. please submit a different barcode.");
+      } else if (isNaN(this.state.barcode)) {
         alert("Please enter a properly formatted barcode.");
+      } else {
+        if (
+          this.state.barcode &&
+          this.state.barcode !== this.props.barcode &&
+          this.state.barcode.length <= 14 &&
+          this.state.barcode.length >= 13
+        ) {
+          this.props.barcode({ text: this.state.barcode });
+          this.props.sendBarcodeToBackend({ text: this.state.barcode });
+          this.setState({ barcode: "" });
+        } else {
+          alert("Please enter a properly formatted barcode.");
+        }
       }
+    } catch (error) {
+      console.log("error in handleSubmit in ReceiveBarcode.js", error);
     }
   };
 
