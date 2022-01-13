@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Form, Field } from "react-final-form";
 import { Button } from "react-bootstrap";
 import { updateItemForm } from "../../redux/actions";
 
@@ -47,67 +48,74 @@ class DataFormContainer extends Component {
       <React.Fragment>
         <h5>Update Item Information</h5>
         <br />
-        <form onSubmit={this.handleFormSubmit}>
-          <label>
-            Note:{" "}
-            <input
-              name="note3"
-              type="text"
-              value={this.props.note3}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <br />
-          <br />
-          <label>
-            Price:{" "}
-            <input
-              name="price"
-              type="text"
-              value={this.state.price}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <br />
-          <br />
-          <label>
-            Provenance:{" "}
-            <select
-              name="provenance"
-              value={this.state.value}
-              onChange={this.handleInputChange}
-              type="text">
-              <option value="-">None</option>
-              <option value="JCR">Jewish Cultural Reconstruction</option>
-            </select>
-          </label>
-          <br />
-          <br />
-          <label>
-            Condition:{" "}
-            <select
-              name="condition"
-              value={this.state.value}
-              onChange={this.handleInputChange}
-              type="text">
-              <option value="-">None</option>
-              <option value="BRITTLE">Brittle</option>
-              <option value="DAMAGED">Damaged</option>
-              <option value="DETERIORATING">Deteriorating</option>
-              <option value="FRAGILE">Fragile</option>
-            </select>
-          </label>
-          <br />
-          <br />
-          <Button
-            className={"btn-min btn-primary"}
-            size="sm"
-            type="submit"
-            value="Submit"
-            style={buttonStyle}>
-            Submit Form Data
-          </Button>
-        </form>
+
+        <Form
+          onSubmit={this.handleFormSubmit}
+          initialValues={{ price: this.props.price }}
+          render={({ handleSubmit, form, submitting, pristine, values }) => (
+            <form onSubmit={this.handleFormSubmit}>
+              <label>
+                Note:{" "}
+                <input
+                  name="note3"
+                  type="text"
+                  value={this.props.note3}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+              <br />
+              <br />
+              <label>
+                Price:{" "}
+                <input
+                  name="price"
+                  type="text"
+                  value={this.state.price}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+              <br />
+              <br />
+              <label>
+                Provenance:{" "}
+                <select
+                  name="provenance"
+                  value={this.state.value}
+                  onChange={this.handleInputChange}
+                  type="text">
+                  <option value="-">None</option>
+                  <option value="JCR">Jewish Cultural Reconstruction</option>
+                </select>
+              </label>
+              <br />
+              <br />
+              <label>
+                Condition:{" "}
+                <select
+                  name="condition"
+                  value={this.state.value}
+                  onChange={this.handleInputChange}
+                  type="text">
+                  <option value="-">None</option>
+                  <option value="BRITTLE">Brittle</option>
+                  <option value="DAMAGED">Damaged</option>
+                  <option value="DETERIORATING">Deteriorating</option>
+                  <option value="FRAGILE">Fragile</option>
+                </select>
+              </label>
+              <br />
+              <br />
+              <Button
+                className={"btn-min btn-primary"}
+                size="sm"
+                type="submit"
+                value="Submit"
+                style={buttonStyle}>
+                Submit Form Data
+              </Button>
+            </form>
+          )}
+        />
       </React.Fragment>
     );
   }
