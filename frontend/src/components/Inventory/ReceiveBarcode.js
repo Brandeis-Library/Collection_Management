@@ -20,7 +20,15 @@ class ReceiveBarcodeContainer extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     try {
-      if (this.state.barcode === this.props.barcode) {
+      const prevCallNum = localStorage.getItem("prevCallNum");
+      console.log(
+        "this.state.barcode",
+        this.state.barcode,
+        "this.props.barcode",
+        prevCallNum,
+        "====================================",
+      );
+      if (this.state.barcode === prevCallNum) {
         alert("barcodes match. please submit a different barcode.");
       } else if (isNaN(this.state.barcode)) {
         alert("Please enter a properly formatted barcode.");
@@ -33,6 +41,7 @@ class ReceiveBarcodeContainer extends Component {
         ) {
           this.props.barcode({ text: this.state.barcode });
           this.props.sendBarcodeToBackend({ text: this.state.barcode });
+          localStorage.setItem("prevCallNum", this.state.barcode);
           this.setState({ barcode: "" });
         } else {
           alert("Please enter a properly formatted barcode.");
@@ -90,7 +99,7 @@ class ReceiveBarcodeContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    barcode: state.inventory.barcode2,
+    barcode: state.inventory.barcode,
   };
 };
 
