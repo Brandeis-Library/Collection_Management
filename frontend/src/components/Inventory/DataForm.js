@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Form, Field } from "react-final-form";
+//import { Form, Field } from "react-final-form";
 import { Button } from "react-bootstrap";
 import { updateItemForm } from "../../redux/actions";
 
@@ -55,12 +55,12 @@ class DataFormContainer extends Component {
         <h5>Update Item Information</h5>
         <br />
 
-        <Form
+        {/* <Form
           onSubmit={this.handleSubmit}
           initialValues={{ price: this.props.price }}
           render={({ handleFormSubmit, values }) => (
-            <form onSubmit={handleFormSubmit}>
-              {/* <label>
+            <form onSubmit={handleFormSubmit}> */}
+        {/* <label>
                 Note:{" "}
                 <input
                   name="note3"
@@ -69,15 +69,15 @@ class DataFormContainer extends Component {
                   onChange={this.handleInputChange}
                 />
               </label> */}
-              {/* <br />
+        {/* <br />
               <br /> */}
-              <div>
-                <label>Price: </label>
-                <Field name="price" component="input" placeholder="400" />
-              </div>
-              {/* <br />
+        <div>
+          <label>Price: </label>
+          {/* <Field name="price" component="input" placeholder="400" /> */}
+        </div>
+        {/* <br />
               <br /> */}
-              {/* <label>
+        {/* <label>
                 Provenance:{" "}
                 <select
                   name="provenance"
@@ -104,12 +104,12 @@ class DataFormContainer extends Component {
                   <option value="FRAGILE">Fragile</option>
                 </select>
               </label> */}
-              <br />
-              <br />
-              <button type="submit">Submit Form Data</button>
-            </form>
+        <br />
+        <br />
+        <button type="submit">Submit Form Data</button>
+        {/* </form>
           )}
-        />
+        /> */}
       </React.Fragment>
     );
   }
