@@ -23,15 +23,21 @@ class DataFormContainer extends Component {
     });
   };
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    this.props.updateItemForm({
-      dataObj: this.props.dataObj,
-      internalNote3: this.state.intNote3,
-      replacementCost: this.state.price,
-      provenance: this.state.provenance,
-      condition: this.state.condition,
-    });
+  validate = (event) => {
+    debugger;
+  };
+
+  handleSubmit = (event) => {
+    debugger;
+    //event.preventDefault();
+    //console.log("values", values, "++++++++++++++++++++++++++++++++++++++++");
+    // this.props.updateItemForm({
+    //   dataObj: this.props.dataObj,
+    //   internalNote3: this.state.intNote3,
+    //   replacementCost: this.state.price,
+    //   provenance: this.state.provenance,
+    //   condition: this.state.condition,
+    // });
   };
 
   render() {
@@ -50,11 +56,11 @@ class DataFormContainer extends Component {
         <br />
 
         <Form
-          onSubmit={this.handleFormSubmit}
+          onSubmit={this.handleSubmit}
           initialValues={{ price: this.props.price }}
-          render={({ handleSubmit, form, submitting, pristine, values }) => (
-            <form onSubmit={this.handleFormSubmit}>
-              <label>
+          render={({ handleFormSubmit, values }) => (
+            <form onSubmit={handleFormSubmit}>
+              {/* <label>
                 Note:{" "}
                 <input
                   name="note3"
@@ -62,21 +68,16 @@ class DataFormContainer extends Component {
                   value={this.props.note3}
                   onChange={this.handleInputChange}
                 />
-              </label>
-              <br />
-              <br />
-              <label>
-                Price:{" "}
-                <input
-                  name="price"
-                  type="text"
-                  value={this.state.price}
-                  onChange={this.handleInputChange}
-                />
-              </label>
-              <br />
-              <br />
-              <label>
+              </label> */}
+              {/* <br />
+              <br /> */}
+              <div>
+                <label>Price: </label>
+                <Field name="price" component="input" placeholder="400" />
+              </div>
+              {/* <br />
+              <br /> */}
+              {/* <label>
                 Provenance:{" "}
                 <select
                   name="provenance"
@@ -102,17 +103,10 @@ class DataFormContainer extends Component {
                   <option value="DETERIORATING">Deteriorating</option>
                   <option value="FRAGILE">Fragile</option>
                 </select>
-              </label>
+              </label> */}
               <br />
               <br />
-              <Button
-                className={"btn-min btn-primary"}
-                size="sm"
-                type="submit"
-                value="Submit"
-                style={buttonStyle}>
-                Submit Form Data
-              </Button>
+              <button type="submit">Submit Form Data</button>
             </form>
           )}
         />

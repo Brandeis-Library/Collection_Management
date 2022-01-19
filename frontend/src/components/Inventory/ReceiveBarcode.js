@@ -21,13 +21,13 @@ class ReceiveBarcodeContainer extends Component {
     event.preventDefault();
     try {
       const prevCallNum = localStorage.getItem("prevCallNum");
-      console.log(
-        "this.state.barcode",
-        this.state.barcode,
-        "this.props.barcode",
-        prevCallNum,
-        "====================================",
-      );
+      // console.log(
+      //   "this.state.barcode",
+      //   this.state.barcode,
+      //   "this.props.barcode",
+      //   prevCallNum,
+      //   "====================================",
+      // );
       if (this.state.barcode === prevCallNum) {
         alert("barcodes match. please submit a different barcode.");
       } else if (isNaN(this.state.barcode)) {
@@ -35,7 +35,7 @@ class ReceiveBarcodeContainer extends Component {
       } else {
         if (
           this.state.barcode &&
-          this.state.barcode !== this.props.barcode &&
+          // this.state.barcode !== this.props.barcode &&
           this.state.barcode.length <= 14 &&
           this.state.barcode.length >= 13
         ) {
