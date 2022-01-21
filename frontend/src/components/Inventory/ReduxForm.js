@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateItemForm } from "../../redux/actions";
+import { Button } from "react-bootstrap";
+
+const buttonStyle = {
+  borderRadius: "5px",
+  paddingTop: "7px",
+  paddingBottom: "7px",
+  marginBottom: "5px",
+  fontSize: "15px",
+};
 
 const ReduxForm = () => {
   const inventoryData = useSelector((state) => state.inventory.dataObjTotal);
   const [price, setPrice] = useState(0);
+  const [note, setNote] = useState("");
 
   useEffect(() => {
     setPrice(inventoryData.item_data.replacement_cost);
+    setNote(inventoryData.item_data.internal_note_3);
   }, [inventoryData]);
 
   const onSubmit = (event) => {
@@ -16,6 +27,7 @@ const ReduxForm = () => {
     event.preventDefault();
 
     inventoryData.item_data.replacement_cost = price;
+    inventoryData.item_data.internal_note_3 = note;
     dispatch(updateItemForm(inventoryData));
     // gather local state
     // attach to inventoryData
@@ -42,10 +54,24 @@ const ReduxForm = () => {
       <h5>Update Item Information</h5>
       <form onSubmit={onSubmit}>
         <label>
-          Price:
+          Price:{" "}
           <input type="text" value={price} onChange={(event) => setPrice(event.target.value)} />
         </label>
-        <button type="submit">Submit Form Data</button>
+        <br />
+        <br />
+        <label>
+          Note: <input type="text" value={note} onChange={(event) => setNote(event.target.value)} />
+        </label>
+        <br />
+        <br />
+        <Button
+          type="submit"
+          value="Submit"
+          style={buttonStyle}
+          size="sm"
+          className={"btn-min btn-primary"}>
+          Submit Form Updates
+        </Button>
       </form>
     </div>
   );
