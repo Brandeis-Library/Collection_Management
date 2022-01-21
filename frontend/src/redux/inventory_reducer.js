@@ -6,6 +6,7 @@ import {
   UPDATEITEM,
   FIND538A,
   UPDATEMESSAGE,
+  UPDATEITEMFORM,
 } from "./actionTypes.js";
 
 const initialState = {
@@ -13,7 +14,7 @@ const initialState = {
   barcode: "",
   barcode2: "",
   title: "",
-  dataObjTotal: { item_data: { replacement_cost: 0 } },
+  dataObjTotal: { item_data: { replacement_cost: 0, internal_note_3: "" } },
   mms_id: "",
   holdingID: "",
   itemID: "",
@@ -71,6 +72,13 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         dataObjTotal: action.payload.dataObjTotal,
         inventoryDate: action.payload.inventoryDate,
+        replacementCost: action.payload.replacementCost,
+      };
+    case UPDATEITEMFORM:
+      return {
+        ...state,
+        dataObjTotal: action.payload.dataObjTotal,
+        internalNote3: action.payload.internalNote3,
         replacementCost: action.payload.replacementCost,
       };
     case UPDATEMESSAGE:

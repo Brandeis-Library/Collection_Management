@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 //import { Form, Field } from "react-final-form";
 import { Button } from "react-bootstrap";
-import { updateItemForm } from "../../redux/actions";
+import { updateItemFormQuery } from "../../redux/actions";
 
 class DataFormContainer extends Component {
   constructor(props) {
@@ -128,7 +128,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateItemForm: (obj) => {
-      dispatch(updateItemForm(obj));
+      dispatch(updateItemFormQuery(obj));
     },
   };
 };

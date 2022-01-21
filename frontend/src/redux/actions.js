@@ -88,26 +88,26 @@ export function updateItem(dataObj) {
   };
 }
 
-export function updateItemForm(obj) {
+export function updateItemFormQuery(obj) {
   return async function updateItemThunk(dispatch, getState) {
     const { data } = await axios.put("http://localhost:4000/api/v1/inventory/itemform", {
       obj,
     });
     console.log("responseWithUpdate ", data);
-    dispatch(updateItem(data));
+    dispatch(updateItemFormData(data));
   };
 }
 
-// export function updateItemFormData(dataObj) {
-//   return {
-//     type: UPDATEITEM,
-//     payload: {
-//       dataObjTotal: dataObj,
-//       inventoryDate: dataObj.item_data.inventory_date,
-//       replacementCost: dataObj.item_data.replacement_cost,
-//     },
-//   };
-// }
+export function updateItemFormData(dataObj) {
+  return {
+    type: UPDATEITEMFORM,
+    payload: {
+      dataObjTotal: dataObj,
+      internalNote3: dataObj.item_data.internal_note_3,
+      replacementCost: dataObj.item_data.replacement_cost,
+    },
+  };
+}
 
 export function actionField(obj) {
   return async function find538aThunk(dispatch, getState) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateItemForm } from "../../redux/actions";
+import { updateItemFormQuery } from "../../redux/actions";
 import { Button } from "react-bootstrap";
 
 const buttonStyle = {
@@ -14,11 +14,11 @@ const buttonStyle = {
 const ReduxForm = () => {
   const inventoryData = useSelector((state) => state.inventory.dataObjTotal);
   const [price, setPrice] = useState(0);
-  const [note, setNote] = useState("");
+  const [note, setNote] = useState(0);
 
   useEffect(() => {
-    setPrice(inventoryData.item_data.replacement_cost);
     setNote(inventoryData.item_data.internal_note_3);
+    setPrice(inventoryData.item_data.replacement_cost);
   }, [inventoryData]);
 
   const onSubmit = (event) => {
@@ -28,7 +28,7 @@ const ReduxForm = () => {
 
     inventoryData.item_data.replacement_cost = price;
     inventoryData.item_data.internal_note_3 = note;
-    dispatch(updateItemForm(inventoryData));
+    dispatch(updateItemFormQuery(inventoryData));
     // gather local state
     // attach to inventoryData
     // bring in the dispatch process you want
