@@ -13,7 +13,7 @@ const initialState = {
   barcode: "",
   barcode2: "",
   title: "",
-  dataObjTotal: {},
+  dataObjTotal: { item_data: { replacement_cost: 0 } },
   mms_id: "",
   holdingID: "",
   itemID: "",
