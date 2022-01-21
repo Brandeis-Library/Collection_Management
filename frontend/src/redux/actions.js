@@ -90,13 +90,24 @@ export function updateItem(dataObj) {
 
 export function updateItemForm(obj) {
   return async function updateItemThunk(dispatch, getState) {
-    const responseWithUpdate = await axios.put("http://localhost:4000/api/v1/inventory/itemform", {
+    const { data } = await axios.put("http://localhost:4000/api/v1/inventory/itemform", {
       obj,
     });
-    console.log("responseWithUpdate ", responseWithUpdate);
-    return responseWithUpdate;
+    console.log("responseWithUpdate ", data);
+    dispatch(updateItem(data));
   };
 }
+
+// export function updateItemFormData(dataObj) {
+//   return {
+//     type: UPDATEITEM,
+//     payload: {
+//       dataObjTotal: dataObj,
+//       inventoryDate: dataObj.item_data.inventory_date,
+//       replacementCost: dataObj.item_data.replacement_cost,
+//     },
+//   };
+// }
 
 export function actionField(obj) {
   return async function find538aThunk(dispatch, getState) {

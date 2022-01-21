@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { updateItemForm } from "../../redux/actions";
 
 const ReduxForm = () => {
   const inventoryData = useSelector((state) => state.inventory.dataObjTotal);
@@ -10,17 +11,27 @@ const ReduxForm = () => {
   }, [inventoryData]);
 
   const onSubmit = (event) => {
-    event.prevenDefault();
+    console.log("inside onSubmit");
+    console.log("inventoryData in onSubmit before the price change", inventoryData);
+    event.preventDefault();
+
+    inventoryData.item_data.replacement_cost = price;
+    dispatch(updateItemForm(inventoryData));
     // gather local state
     // attach to inventoryData
     // bring in the dispatch process you want
     // declate dispatch
     // submit data to dispatch
     // set up action type
-    // set up action
+    // set up action d
     // thunk to back end
     // when data comes back sent to reducer
-    // set up reducer
+    // set up reducer to update data or choose an existing reducer
+    // once price passes data successfully, set up the other 3 datatypes in inventory default state of dataObjTotal
+    // implement other 3 useState items
+    // implement other 3 states in useEffect
+    // implement other 3 local states in onSubmit
+    // implement other 3 inputs on the form
   };
 
   const dispatch = useDispatch();

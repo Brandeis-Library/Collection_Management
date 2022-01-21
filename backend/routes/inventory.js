@@ -41,23 +41,25 @@ router.post("/", async function (req, res) {
 router.put("/itemform", async function (req, res) {
   try {
     // console.log("inside iventory itemform route -----------------");
-    // console.log("req.body", req.body);
+    console.log("req.body", req.body);
     // console.log("itemform dataObj from the frontend ------------- ", req.body.obj.internalNote3);
-    const dataObj = req.body.obj.dataObj;
-    if (req.body.obj.internalNote3) {
-      dataObj.item_data.internal_note_3 = req.body.obj.internalNote3;
-    }
-    if (req.body.obj.replacementCost) {
-      dataObj.item_data.replacement_cost = req.body.obj.replacementCost;
-    }
-    if (req.body.obj.provenance) {
-      dataObj.item_data.provenance = req.body.obj.provenance;
-    }
-    if (req.body.obj.condition) {
-      dataObj.item_data.condition = req.body.obj.condition;
-    }
+    const dataObj = req.body.obj;
+
     console.log("updated dataObj -------- ", dataObj);
-    res.status(200);
+
+    let { data } = await axios.put(
+      process.env.EXLIBRIS_API_ROOT +
+        "/almaws/v1/bibs/" +
+        dataObj.bib_data.mms_id +
+        "/holdings/" +
+        dataObj.holding_data.holding_id +
+        "/items/" +
+        dataObj.item_data.pid +
+        "?apikey=" +
+        process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
+      dataObj,
+    );
+    res.json(data);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
     res.send(error);
