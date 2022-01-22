@@ -105,6 +105,7 @@ export function updateItemFormData(dataObj) {
       dataObjTotal: dataObj,
       internalNote3: dataObj.item_data.internal_note_3,
       replacementCost: dataObj.item_data.replacement_cost,
+      provenance: dataObj.item_data.provenance.value,
     },
   };
 }

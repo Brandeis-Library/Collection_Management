@@ -14,20 +14,28 @@ const buttonStyle = {
 const ReduxForm = () => {
   const inventoryData = useSelector((state) => state.inventory.dataObjTotal);
   const [price, setPrice] = useState(0);
-  const [note, setNote] = useState(0);
+  const [note, setNote] = useState("");
+  const [provenance, setProvenance] = useState("");
 
   useEffect(() => {
     setNote(inventoryData.item_data.internal_note_3);
     setPrice(inventoryData.item_data.replacement_cost);
+    setProvenance(inventoryData.item_data.provenance.value);
   }, [inventoryData]);
 
   const onSubmit = (event) => {
     console.log("inside onSubmit");
     console.log("inventoryData in onSubmit before the price change", inventoryData);
     event.preventDefault();
+    //const provObj = JSON.parse('{value:}')
 
     inventoryData.item_data.replacement_cost = price;
     inventoryData.item_data.internal_note_3 = note;
+    inventoryData.item_data.provenance.value = provenance;
+    console.log(
+      "inventoryData in onSubmit after form changes -------------------  ",
+      inventoryData,
+    );
     dispatch(updateItemFormQuery(inventoryData));
     // gather local state
     // attach to inventoryData
@@ -52,6 +60,7 @@ const ReduxForm = () => {
       {/* {JSON.stringify(inventoryData)} */}
       {/* {console.log(inventoryData.item_data.replacement_cost)} */}
       <h5>Update Item Information</h5>
+      {JSON.stringify(provenance)}
       <form onSubmit={onSubmit}>
         <label>
           Price:{" "}
@@ -61,6 +70,20 @@ const ReduxForm = () => {
         <br />
         <label>
           Note: <input type="text" value={note} onChange={(event) => setNote(event.target.value)} />
+        </label>
+        <br />
+        <br />
+
+        <label>
+          Provenance:{" "}
+          <select
+            name="provenance"
+            value={provenance}
+            onChange={(event) => setProvenance(event.target.value)}
+            type="text">
+            <option value="">None</option>
+            <option value="JCR">Jewish Cultural Reconstruction</option>
+          </select>
         </label>
         <br />
         <br />

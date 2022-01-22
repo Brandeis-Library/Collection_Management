@@ -59,6 +59,7 @@ router.put("/itemform", async function (req, res) {
         process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
       dataObj,
     );
+    console.log("data from update on itemform route from alma/axios", data);
     res.json(data);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);

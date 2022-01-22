@@ -62,7 +62,7 @@ const mapStateToProps = (state) => {
     internalNote3: state.inventory.internalNote3,
     link: state.inventory.link,
     replacementCost: state.inventory.replacementCost,
-    provenance: state.inventory.provenance.desc,
+    provenance: state.inventory.provenance,
     condition: state.inventory.condition.desc,
   };
 };
