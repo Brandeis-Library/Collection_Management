@@ -16,22 +16,25 @@ const ReduxForm = () => {
   const [price, setPrice] = useState(0);
   const [note, setNote] = useState("");
   const [provenance, setProvenance] = useState("");
+  const [condition, setCondition] = useState("");
 
   useEffect(() => {
     setNote(inventoryData.item_data.internal_note_3);
     setPrice(inventoryData.item_data.replacement_cost);
     setProvenance(inventoryData.item_data.provenance.value);
+    setCondition(inventoryData.item_data.physical_condition.value);
   }, [inventoryData]);
 
   const onSubmit = (event) => {
     console.log("inside onSubmit");
-    console.log("inventoryData in onSubmit before the price change", inventoryData);
+    //console.log("inventoryData in onSubmit before the price change", inventoryData);
     event.preventDefault();
     //const provObj = JSON.parse('{value:}')
 
     inventoryData.item_data.replacement_cost = price;
     inventoryData.item_data.internal_note_3 = note;
     inventoryData.item_data.provenance.value = provenance;
+    inventoryData.item_data.physical_condition.value = condition;
     console.log(
       "inventoryData in onSubmit after form changes -------------------  ",
       inventoryData,
@@ -73,7 +76,6 @@ const ReduxForm = () => {
         </label>
         <br />
         <br />
-
         <label>
           Provenance:{" "}
           <select
@@ -83,6 +85,22 @@ const ReduxForm = () => {
             type="text">
             <option value="">None</option>
             <option value="JCR">Jewish Cultural Reconstruction</option>
+          </select>
+        </label>
+        <br />
+        <br />
+        <label>
+          Condition:{" "}
+          <select
+            name="condition"
+            value={condition}
+            onChange={(event) => setCondition(event.target.value)}
+            type="text">
+            <option value="">None</option>
+            <option value="BRITTLE">Brittle</option>
+            <option value="DAMAGED">Damaged</option>
+            <option value="DETERIORATING">Deteriorating</option>
+            <option value="FRAGILE">Fragile</option>
           </select>
         </label>
         <br />

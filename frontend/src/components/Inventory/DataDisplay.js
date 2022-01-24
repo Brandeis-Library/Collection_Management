@@ -63,7 +63,7 @@ const mapStateToProps = (state) => {
     link: state.inventory.link,
     replacementCost: state.inventory.replacementCost,
     provenance: state.inventory.provenance,
-    condition: state.inventory.condition.desc,
+    condition: state.inventory.condition,
   };
 };
 

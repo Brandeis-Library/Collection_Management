@@ -94,6 +94,7 @@ export function updateItemFormQuery(obj) {
       obj,
     });
     console.log("responseWithUpdate ", data);
+    //console.log("responseWithUpdate physical_condition -----", data);
     dispatch(updateItemFormData(data));
   };
 }
@@ -106,6 +107,7 @@ export function updateItemFormData(dataObj) {
       internalNote3: dataObj.item_data.internal_note_3,
       replacementCost: dataObj.item_data.replacement_cost,
       provenance: dataObj.item_data.provenance.value,
+      condition: dataObj.item_data.physical_condition.value,
     },
   };
 }

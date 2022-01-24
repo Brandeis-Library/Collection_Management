@@ -15,7 +15,12 @@ const initialState = {
   barcode2: "",
   title: "",
   dataObjTotal: {
-    item_data: { replacement_cost: 0, internal_note_3: "", provenance: { value: "" } },
+    item_data: {
+      replacement_cost: 0,
+      internal_note_3: "",
+      provenance: { value: "" },
+      physical_condition: { value: "" },
+    },
   },
   mms_id: "",
   holdingID: "",
@@ -67,7 +72,7 @@ export const inventoryReducer = (state = initialState, action) => {
         link: action.payload.link,
         replacementCost: action.payload.replacementCost,
         provenance: action.payload.provenance.value,
-        condition: action.payload.condition,
+        condition: action.payload.condition.value,
       };
     case UPDATEITEM:
       return {
@@ -83,6 +88,7 @@ export const inventoryReducer = (state = initialState, action) => {
         internalNote3: action.payload.internalNote3,
         replacementCost: action.payload.replacementCost,
         provenance: action.payload.provenance,
+        condition: action.payload.condition,
       };
     case UPDATEMESSAGE:
       return { ...state, message: { ...action.payload.obj } };
