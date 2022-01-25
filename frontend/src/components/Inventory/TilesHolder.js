@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import DataDisplay from "./DataDisplay";
-import DataForm from "./DataForm";
 import ReduxForm from "./ReduxForm";
 import UseSLocaltorage from "./UseLocalStorage";
 
