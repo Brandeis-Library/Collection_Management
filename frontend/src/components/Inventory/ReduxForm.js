@@ -26,44 +26,18 @@ const ReduxForm = () => {
   }, [inventoryData]);
 
   const onSubmit = (event) => {
-    console.log("inside onSubmit");
-    //console.log("inventoryData in onSubmit before the price change", inventoryData);
     event.preventDefault();
-    //const provObj = JSON.parse('{value:}')
-
     inventoryData.item_data.replacement_cost = price;
     inventoryData.item_data.internal_note_3 = note;
     inventoryData.item_data.provenance.value = provenance;
     inventoryData.item_data.physical_condition.value = condition;
-    console.log(
-      "inventoryData in onSubmit after form changes -------------------  ",
-      inventoryData,
-    );
     dispatch(updateItemFormQuery(inventoryData));
-    // gather local state
-    // attach to inventoryData
-    // bring in the dispatch process you want
-    // declate dispatch
-    // submit data to dispatch
-    // set up action type
-    // set up action d
-    // thunk to back end
-    // when data comes back sent to reducer
-    // set up reducer to update data or choose an existing reducer
-    // once price passes data successfully, set up the other 3 datatypes in inventory default state of dataObjTotal
-    // implement other 3 useState items
-    // implement other 3 states in useEffect
-    // implement other 3 local states in onSubmit
-    // implement other 3 inputs on the form
   };
 
   const dispatch = useDispatch();
   return (
     <div>
-      {/* {JSON.stringify(inventoryData)} */}
-      {/* {console.log(inventoryData.item_data.replacement_cost)} */}
       <h5>Update Item Information</h5>
-      {JSON.stringify(provenance)}
       <form onSubmit={onSubmit}>
         <label>
           Price:{" "}
