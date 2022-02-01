@@ -15,11 +15,12 @@ const { response } = require("express");
 // define the home page route
 
 // route to retrieve record by barcode
-router.post("/", async function (req, res) {
+router.post("/", async function (req, res, next) {
   try {
     console.log("req.body.barcode.text)", req.body.barcode.text);
     const barcode = req.body.barcode.text;
     //item retrieve query to Alma backend. API URL, Item Barcode, and APIKEY
+
     const { data } = await axios.get(
       process.env.EXLIBRIS_API_ROOT +
         process.env.EXLIBRIS_API_PATH +
@@ -28,13 +29,16 @@ router.post("/", async function (req, res) {
         process.env.EXLIBRIS_API_BIB_GET_KEY +
         "&expand=p_avail",
     );
+
     //console.log("physical_condition ======== ", data.item_data.physical_condition);
     const dataObj = retrieveDataItems(data);
     //console.log("dataObj", dataObj);
     res.status(200).send({ dataObj: dataObj });
   } catch (error) {
+    console.log("catch for overall in inventory root post method.");
+    //console.log("retreiveItemErrorAPI Error:   ", error);
     console.log("retreiveItemErrorAPI Error:   ", error.message);
-    res.send(error);
+    next(JSON.stringify({ status: false, message: error.message }));
   }
 });
 

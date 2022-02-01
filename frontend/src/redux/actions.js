@@ -37,16 +37,20 @@ export function updateMessage(obj) {
 
 export function sendBarcodeToBackend(barcode) {
   return async function fetchItemDetailThunk(dispatch, getState) {
-    console.log("barcode in actions.js ---------", barcode);
-    const response = await axios.post("http://localhost:4000/api/v1/inventory/", { barcode });
-    const respDataObj = response.data.dataObj;
-    console.log("fetchItemDetailThunk-------", respDataObj.data);
-    dispatch(sendBarCode(respDataObj));
-    const responseWithUpdate = await axios.put("http://localhost:4000/api/v1/inventory/", {
-      respDataObj,
-    });
-    dispatch(updateItem(responseWithUpdate.data));
-    dispatch(actionField(responseWithUpdate.data));
+    try {
+      console.log("barcode in actions.js ---------", barcode);
+      const response = await axios.post("http://localhost:4000/api/v1/inventory/", { barcode });
+      const respDataObj = response.data.dataObj;
+      console.log("fetchItemDetailThunk-------", respDataObj.data);
+      dispatch(sendBarCode(respDataObj));
+      const responseWithUpdate = await axios.put("http://localhost:4000/api/v1/inventory/", {
+        respDataObj,
+      });
+      dispatch(updateItem(responseWithUpdate.data));
+      dispatch(actionField(responseWithUpdate.data));
+    } catch (error) {
+      console.error("Invalid barcode number.", error.message);
+    }
   };
 }
 
