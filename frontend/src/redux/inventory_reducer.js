@@ -91,6 +91,7 @@ export const inventoryReducer = (state = initialState, action) => {
         condition: action.payload.condition,
       };
     case UPDATEMESSAGE:
+      console.log("inside updatemessage reducer ", action.payload.obj);
       return { ...state, message: { ...action.payload.obj } };
     default:
       return state;

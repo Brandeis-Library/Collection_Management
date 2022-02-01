@@ -50,6 +50,13 @@ export function sendBarcodeToBackend(barcode) {
       dispatch(actionField(responseWithUpdate.data));
     } catch (error) {
       console.error("Invalid barcode number.", error.message);
+      console.log(error);
+      const callNum = localStorage.getItem("CallNumforTest");
+      const obj = {};
+      obj.status = false;
+      obj.message = "Possible barcode error. Please retry. " + error.message;
+      obj.localStorageCallNum = callNum;
+      dispatch(updateMessage({ obj }));
     }
   };
 }

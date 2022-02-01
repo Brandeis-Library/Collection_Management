@@ -38,7 +38,7 @@ router.post("/", async function (req, res, next) {
     console.log("catch for overall in inventory root post method.");
     //console.log("retreiveItemErrorAPI Error:   ", error);
     console.log("retreiveItemErrorAPI Error:   ", error.message);
-    next(JSON.stringify({ status: false, message: error.message }));
+    next({ status: false, message: error.message });
   }
 });
 
