@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import MessageContainer from "./Message";
 import { Button } from "react-bootstrap";
-import { barcode, sendBarcodeToBackend } from "../../redux/actions";
+import { barcode, sendBarcodeToBackend, updateMessage } from "../../redux/actions";
 
 class ReceiveBarcodeContainer extends Component {
   constructor(props) {
@@ -21,15 +21,15 @@ class ReceiveBarcodeContainer extends Component {
     event.preventDefault();
     try {
       const prevCallNum = localStorage.getItem("prevCallNum");
-      // console.log(
-      //   "this.state.barcode",
-      //   this.state.barcode,
-      //   "this.props.barcode",
-      //   prevCallNum,
-      //   "====================================",
-      // );
+
       if (this.state.barcode === prevCallNum) {
-        alert("barcodes match. please submit a different barcode.");
+        const obj = {
+          status: false,
+          message:
+            "Barcode is the same as the previous barcode. Please submit a different barcode.",
+          localStorageCallNum: localStorage.getItem("CallNumforTest"),
+        };
+        this.props.updateMessage({ obj });
       } else if (isNaN(this.state.barcode)) {
         alert("Please enter a properly formatted barcode.");
       } else {
@@ -107,6 +107,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     barcode: (text) => dispatch(barcode(text)),
     sendBarcodeToBackend: (text) => dispatch(sendBarcodeToBackend(text)),
+    updateMessage: (obj) => dispatch(updateMessage(obj)),
   };
 };
 
