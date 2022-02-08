@@ -31,7 +31,12 @@ class ReceiveBarcodeContainer extends Component {
         };
         this.props.updateMessage({ obj });
       } else if (isNaN(this.state.barcode)) {
-        alert("Please enter a properly formatted barcode.");
+        const obj = {
+          status: false,
+          message: "Please enter a properly formatted barcode.",
+          localStorageCallNum: localStorage.getItem("CallNumforTest"),
+        };
+        this.props.updateMessage({ obj });
       } else {
         if (
           this.state.barcode &&
@@ -44,11 +49,22 @@ class ReceiveBarcodeContainer extends Component {
           localStorage.setItem("prevCallNum", this.state.barcode);
           this.setState({ barcode: "" });
         } else {
-          alert("Please enter a properly formatted barcode.");
+          const obj = {
+            status: false,
+            message: "Please enter a properly formatted barcode.",
+            localStorageCallNum: localStorage.getItem("CallNumforTest"),
+          };
+          this.props.updateMessage({ obj });
         }
       }
     } catch (error) {
       console.log("error in handleSubmit in ReceiveBarcode.js", error);
+      const obj = {
+        status: false,
+        message: error.message,
+        localStorageCallNum: localStorage.getItem("CallNumforTest"),
+      };
+      this.props.updateMessage({ obj });
     }
   };
 
