@@ -1,7 +1,7 @@
 const replacementCost = (price) => {
   let newPrice = Number(price);
-  if (!newPrice || newPrice < 150) {
-    newPrice = 150;
+  if (!newPrice || newPrice < 100) {
+    newPrice = 100;
   }
 
   return String(newPrice);
