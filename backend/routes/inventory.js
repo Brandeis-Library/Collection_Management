@@ -56,7 +56,7 @@ router.put("/itemform", async function (req, res, next) {
         dataObj.holding_data.holding_id +
         "/items/" +
         dataObj.item_data.pid +
-        "?apikey=" +
+        "?apikey=7890" +
         process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
       dataObj,
     );

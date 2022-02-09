@@ -101,12 +101,23 @@ export function updateItem(dataObj) {
 
 export function updateItemFormQuery(obj) {
   return async function updateItemThunk(dispatch, getState) {
-    const { data } = await axios.put("http://localhost:4000/api/v1/inventory/itemform", {
-      obj,
-    });
-    console.log("responseWithUpdate ", data);
-    //console.log("responseWithUpdate physical_condition -----", data);
-    dispatch(updateItemFormData(data));
+    try {
+      const { data } = await axios.put("http://localhost:4000/api/v1/inventory/itemform", {
+        obj,
+      });
+      console.log("responseWithUpdate ", data);
+      //console.log("responseWithUpdate physical_condition -----", data);
+      dispatch(updateItemFormData(data));
+    } catch (error) {
+      console.error("Error submitting form data. ", error.message);
+      console.log(error);
+      const callNum = localStorage.getItem("CallNumforTest");
+      const obj = {};
+      obj.status = false;
+      obj.message = "Error submitting form data. " + error.message;
+      obj.localStorageCallNum = callNum;
+      dispatch(updateMessage({ obj }));
+    }
   };
 }
 
