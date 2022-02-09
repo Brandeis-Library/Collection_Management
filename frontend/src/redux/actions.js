@@ -125,11 +125,22 @@ export function updateItemFormData(dataObj) {
 
 export function actionField(obj) {
   return async function find538aThunk(dispatch, getState) {
-    const text = await axios.put("http://localhost:4000/api/v1/inventory/538Text", {
-      obj,
-    });
-    console.log("538a Text ************  ", text);
-    dispatch(updateaActionText(text));
+    try {
+      const text = await axios.put("http://localhost:4000/api/v1/inventory/538Text", {
+        obj,
+      });
+      console.log("538a Text ************  ", text);
+      dispatch(updateaActionText(text));
+    } catch (error) {
+      console.error("Unable to retrieve 538a field data. ", error.message);
+      console.log(error);
+      const callNum = localStorage.getItem("CallNumforTest");
+      const obj = {};
+      obj.status = false;
+      obj.message = "Unable to retrieve 538a field data. " + error.message;
+      obj.localStorageCallNum = callNum;
+      dispatch(updateMessage({ obj }));
+    }
   };
 }
 

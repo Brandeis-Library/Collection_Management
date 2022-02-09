@@ -10,9 +10,6 @@ const lc = require("lc_call_number_compare");
 
 const retrieveDataItems = require("../helperFunctions/retrieveItemData");
 const replacementCost = require("../helperFunctions/replacmentCost");
-const { response } = require("express");
-
-// define the home page route
 
 // route to retrieve record by barcode
 router.post("/", async function (req, res, next) {
@@ -42,7 +39,7 @@ router.post("/", async function (req, res, next) {
   }
 });
 
-router.put("/itemform", async function (req, res) {
+router.put("/itemform", async function (req, res, next) {
   try {
     // console.log("inside iventory itemform route -----------------");
     console.log("req.body", req.body);
@@ -67,12 +64,12 @@ router.put("/itemform", async function (req, res) {
     res.json(data);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
-    res.send(error);
+    next({ status: false, message: error.message });
   }
 });
 
 // Route to retreive 538a field data.
-router.put("/538Text", async function (req, res) {
+router.put("/538Text", async function (req, res, next) {
   try {
     const mmsId = req.body.obj.bib_data.mms_id;
     const holdingId = req.body.obj.holding_data.holding_id;
@@ -106,7 +103,7 @@ router.put("/538Text", async function (req, res) {
     res.send(string583a);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
-    res.send(error);
+    next({ status: false, message: error.message });
   }
 });
 
@@ -166,6 +163,7 @@ router.put("/", async function (req, res) {
   }
 });
 
+// define the home page route
 // generic get route to test avaialablity
 router.get("/", function (req, res) {
   //console.log("req.body.barcode)",req.body.barcode)
