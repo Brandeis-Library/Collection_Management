@@ -5,7 +5,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <LoadingBar style={{ backgroundColor: "blue", height: "5px" }} />
+        <LoadingBar style={{ backgroundColor: "#0CAFFF", height: "8px" }} />
       </header>
     );
   }
