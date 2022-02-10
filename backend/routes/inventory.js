@@ -159,15 +159,20 @@ router.put("/", async function (req, res) {
     res.json(data);
   } catch (error) {
     console.log("updateItemErrorAPI Error:   ", error.message);
-    res.send(error);
+    next({ status: false, message: error.message });
   }
 });
 
 // define the home page route
 // generic get route to test avaialablity
-router.get("/", function (req, res) {
-  //console.log("req.body.barcode)",req.body.barcode)
-  res.status(200).send("Inventory home page");
+router.get("/", function (req, res, next) {
+  try {
+    //console.log("req.body.barcode)",req.body.barcode)
+    res.status(200).send("Inventory home page");
+  } catch (error) {
+    console.log("inventory Root Get Error:   ", error.message);
+    next({ status: false, message: error.message });
+  }
 });
 
 module.exports = router;
