@@ -25,30 +25,38 @@ class MessageContainer extends Component {
 
   async componentDidUpdate(prevProps) {
     if (this.props.callNum !== prevProps.callNum) {
-      //console.log("inside messagecontainer component did update method.");
-      const obj = {};
-      const x = await localStorage.getItem("CallNumforTest");
-      const y = this.props.callNum;
-      const response = await axios.put("http://localhost:4000/api/v1/inventory/callNumCheck", {
-        x,
-        y,
-      });
-      console.log("RESpONSE++++++++++++++++++++", response);
-      const result = response.data.status;
-      console.log("result ---------", result);
-      if (result) {
-        obj.message = "Item is in the proper order!";
-        localStorage.setItem("CallNumforTest", y);
-        obj.localStorageCallNum = this.props.callNum;
+      try {
+        const obj = {};
+        const x = await localStorage.getItem("CallNumforTest");
+        const y = this.props.callNum;
+        const response = await axios.put("http://localhost:4000/api/v1/inventory/callNumCheck", {
+          x,
+          y,
+        });
+        console.log("RESpONSE++++++++++++++++++++", response);
+        const result = response.data.status;
+        console.log("result ---------", result);
+        if (result) {
+          obj.message = "Item is in the proper order!";
+          localStorage.setItem("CallNumforTest", y);
+          obj.localStorageCallNum = this.props.callNum;
+          obj.status = result;
+        } else {
+          obj.message = "Item is out of order!!! Please reshelve in the proper place!";
+          obj.status = result;
+          obj.localStorageCallNum = x;
+        }
         obj.status = result;
-      } else {
-        obj.message = "Item is out of order!!! Please reshelve in the proper place!";
-        obj.status = result;
-        obj.localStorageCallNum = x;
+        //console.log("obj from componentDidUpdate from Message.js +++++++++++++", obj);
+        this.props.updateMessage({ obj });
+      } catch (error) {
+        const callNum = localStorage.getItem("CallNumforTest");
+        const obj = {};
+        obj.status = false;
+        obj.message = "Call Number Order Error. " + error.message;
+        obj.localStorageCallNum = callNum;
+        this.props.updateMessage({ obj });
       }
-      obj.status = result;
-      //console.log("obj from componentDidUpdate from Message.js +++++++++++++", obj);
-      this.props.updateMessage({ obj });
     }
   }
 

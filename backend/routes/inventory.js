@@ -56,7 +56,7 @@ router.put("/itemform", async function (req, res, next) {
         dataObj.holding_data.holding_id +
         "/items/" +
         dataObj.item_data.pid +
-        "?apikey=7890" +
+        "?apikey=" +
         process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
       dataObj,
     );
@@ -108,7 +108,7 @@ router.put("/538Text", async function (req, res, next) {
 });
 
 // route to do the checking of order of call numbers for order of books on the shelves.
-router.put("/callNumCheck", async function (req, res) {
+router.put("/callNumCheck", async function (req, res, next) {
   try {
     const dataObj = req.body;
 
@@ -124,8 +124,8 @@ router.put("/callNumCheck", async function (req, res) {
 
     res.json({ status: result });
   } catch (error) {
-    console.log("updateItemErrorAPI Error:   ", error.message);
-    res.send(error);
+    console.log("uppdate callNumCheck API Error:   ", error.message);
+    next({ status: false, message: error.message });
   }
 });
 
