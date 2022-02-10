@@ -9,6 +9,7 @@ import {
   UPDATEMESSAGE,
 } from "./actionTypes";
 import axios from "axios";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export function increment() {
   return {
@@ -38,6 +39,7 @@ export function updateMessage(obj) {
 export function sendBarcodeToBackend(barcode) {
   return async function fetchItemDetailThunk(dispatch, getState) {
     try {
+      dispatch(showLoading());
       console.log("barcode in actions.js ---------", barcode);
       const response = await axios.post("http://localhost:4000/api/v1/inventory/", { barcode });
       const respDataObj = response.data.dataObj;
@@ -48,6 +50,7 @@ export function sendBarcodeToBackend(barcode) {
       });
       dispatch(updateItem(responseWithUpdate.data));
       dispatch(actionField(responseWithUpdate.data));
+      dispatch(hideLoading());
     } catch (error) {
       console.error("Invalid barcode number.", error.message);
       console.log(error);
