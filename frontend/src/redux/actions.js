@@ -105,12 +105,14 @@ export function updateItem(dataObj) {
 export function updateItemFormQuery(obj) {
   return async function updateItemThunk(dispatch, getState) {
     try {
+      dispatch(showLoading());
       const { data } = await axios.put("http://localhost:4000/api/v1/inventory/itemform", {
         obj,
       });
       console.log("responseWithUpdate ", data);
       //console.log("responseWithUpdate physical_condition -----", data);
       dispatch(updateItemFormData(data));
+      dispatch(hideLoading());
     } catch (error) {
       console.error("Error submitting form data. ", error.message);
       console.log(error);
