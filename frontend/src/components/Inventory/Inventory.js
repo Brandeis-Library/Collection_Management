@@ -9,7 +9,7 @@ class InventoryContainer extends Component {
     return (
       <React.Fragment>
         {/* <h1>This is the Inventory page.</h1> */}
-        <Header />
+        {/* <Header /> */}
         <ReceiveBarcode />
         <TilesHolder />
       </React.Fragment>
