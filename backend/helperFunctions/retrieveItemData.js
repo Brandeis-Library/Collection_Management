@@ -30,9 +30,6 @@ const retrieveDataItems = (data) => {
   itemRecordObj.callNum = data.holding_data.call_number;
   itemRecordObj.permLib = data.item_data.library.desc;
   itemRecordObj.permLoc = data.item_data.location.desc;
-  itemRecordObj.tempLib = data.holding_data.temp_library.desc;
-  itemRecordObj.tempLoc = data.holding_data.temp_location.desc;
-  //itemRecordObj.string583a = '';
   itemRecordObj.inventoryDate = data.item_data.inventory_date || "None";
   itemRecordObj.internalNote3 = data.item_data.internal_note_3;
   itemRecordObj.dataObjTotal = data;
@@ -40,6 +37,14 @@ const retrieveDataItems = (data) => {
   itemRecordObj.replacementCost = data.item_data.replacement_cost;
   itemRecordObj.provenance = data.item_data.provenance;
   itemRecordObj.condition = data.item_data.physical_condition;
+
+  if (data.holding_data.in_temp_location) {
+    itemRecordObj.tempLib = data.holding_data.temp_library.desc;
+    itemRecordObj.tempLoc = data.holding_data.temp_location.desc;
+  } else {
+    itemRecordObj.tempLib = "-----";
+    itemRecordObj.tempLoc = "-----";
+  }
 
   return itemRecordObj;
 };
