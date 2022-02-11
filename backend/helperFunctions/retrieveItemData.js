@@ -1,3 +1,4 @@
+// object that declares the objecr reference and sets the intial state of the object properties
 const itemRecordObj = {
   dataObjTotal: {},
   barcode: "",
@@ -20,6 +21,8 @@ const itemRecordObj = {
   condition: "",
 };
 
+// function processes the data that comes back from the successful inital
+// Alma call into a format usable by the frontend data store
 const retrieveDataItems = (data) => {
   itemRecordObj.link = data.link;
   itemRecordObj.title = data.bib_data.title;
