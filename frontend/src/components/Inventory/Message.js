@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateMessage } from "../../redux/actions";
 import axios from "axios";
-import { getDropdownMenuPlacement } from "react-bootstrap/esm/DropdownMenu";
+
+// Component used for displaying error and items sort order messages in the front end to the user.
 class MessageContainer extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,7 @@ class MessageContainer extends Component {
     };
     this.props.updateMessage({ obj });
   }
-
+  // async call to the backend to check if the item is in order or not.
   async componentDidUpdate(prevProps) {
     if (this.props.callNum !== prevProps.callNum) {
       try {
@@ -33,9 +34,9 @@ class MessageContainer extends Component {
           x,
           y,
         });
-        console.log("RESpONSE++++++++++++++++++++", response);
+
         const result = response.data.status;
-        console.log("result ---------", result);
+
         if (result) {
           obj.message = "Item is in the proper order!";
           localStorage.setItem("CallNumforTest", y);
@@ -47,7 +48,7 @@ class MessageContainer extends Component {
           obj.localStorageCallNum = x;
         }
         obj.status = result;
-        //console.log("obj from componentDidUpdate from Message.js +++++++++++++", obj);
+
         this.props.updateMessage({ obj });
       } catch (error) {
         const callNum = localStorage.getItem("CallNumforTest");
