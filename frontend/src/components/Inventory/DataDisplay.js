@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+// Component that shows the data for the item being inventoried.
 class DataDisplayContainer extends Component {
   render() {
     const listStyle = {
@@ -47,7 +48,6 @@ const mapStateToProps = (state) => {
   return {
     barcode2: state.inventory.barcode2,
     title: state.inventory.title,
-    // dataObjTotal: state.inventory.dataObjTotal,
     mms_id: state.inventory.mms_id,
     holdingID: state.inventory.holdingID,
     itemID: state.inventory.itemID,
