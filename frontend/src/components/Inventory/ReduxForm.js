@@ -11,6 +11,9 @@ const buttonStyle = {
   fontSize: "15px",
 };
 
+// form for updating the allowed item fields in the front end.
+// the only component that uses React hooks.
+
 const ReduxForm = () => {
   const inventoryData = useSelector((state) => state.inventory.dataObjTotal);
   const [price, setPrice] = useState(0);
