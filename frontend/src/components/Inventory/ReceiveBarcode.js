@@ -4,6 +4,8 @@ import MessageContainer from "./Message";
 import { Button } from "react-bootstrap";
 import { barcode, sendBarcodeToBackend, updateMessage } from "../../redux/actions";
 
+// The component the receives the barcode from the end user and sends it to the backend
+// so the item obj can be retrieved.
 class ReceiveBarcodeContainer extends Component {
   constructor(props) {
     super(props);
@@ -12,11 +14,15 @@ class ReceiveBarcodeContainer extends Component {
     };
   }
 
+  // updates state as the barcode is entered into the text field.
   handleChange = (event) => {
     const barcodeIntermediate = String(event.target.value);
     this.setState({ barcode: barcodeIntermediate });
   };
 
+  // does checks to see if the barcode is properly formatted.
+  // if yes, it is sent to the backend
+  // if not, a message is sent to the message.js component to be shown to the user.
   handleSubmit = (event) => {
     event.preventDefault();
     try {
@@ -40,7 +46,6 @@ class ReceiveBarcodeContainer extends Component {
       } else {
         if (
           this.state.barcode &&
-          // this.state.barcode !== this.props.barcode &&
           this.state.barcode.length <= 14 &&
           this.state.barcode.length >= 13
         ) {
@@ -58,7 +63,7 @@ class ReceiveBarcodeContainer extends Component {
         }
       }
     } catch (error) {
-      console.log("error in handleSubmit in ReceiveBarcode.js", error);
+      console.error("error in handleSubmit in ReceiveBarcode.js", error);
       const obj = {
         status: false,
         message: error.message,
