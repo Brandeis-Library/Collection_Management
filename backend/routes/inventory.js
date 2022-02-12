@@ -11,6 +11,7 @@ const retrieveDataItems = require("../helperFunctions/retrieveItemData");
 const replacementCost = require("../helperFunctions/replacmentCost");
 
 // route to retrieve record by barcode. Initial inventory data retrieval.
+// used a post route to a "get/retrieval" as the barcode needs to be shared as payload.
 router.post("/", async function (req, res, next) {
   try {
     console.log("req.body.barcode.text)", req.body.barcode.text);
