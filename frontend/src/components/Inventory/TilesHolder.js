@@ -3,6 +3,7 @@ import DataDisplay from "./DataDisplay";
 import ReduxForm from "./ReduxForm";
 import UseSLocaltorage from "./UseLocalStorage";
 
+// component that holds/displays the dataDisplay, ReduxForm, & UseLocalStorage components
 export default class TilesHolder extends Component {
   render() {
     const floatContainer = {
@@ -26,7 +27,6 @@ export default class TilesHolder extends Component {
         <div style={floatChild}>
           <ReduxForm />
         </div>
-
         <br />
         <div style={floatChild}>
           <UseSLocaltorage />
