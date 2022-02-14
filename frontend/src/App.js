@@ -9,7 +9,6 @@ import BulkCheckin from "./components/BulkCheckin";
 import IronMountain from "./components/IronMountain";
 import My404Component from "./components/My404Component";
 
-// testing Pretti
 function App() {
   return (
     <div className="App">
