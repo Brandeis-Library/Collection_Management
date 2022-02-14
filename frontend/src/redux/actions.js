@@ -11,39 +11,49 @@ import {
 import axios from "axios";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 
+// Increases inventory.inventory by the amount of increment. Usually 1.
+// Used as the inital testing of this redux install
+// May be removed in the future
 export function increment() {
   return {
     type: INCREMENT,
   };
 }
+
+// Decreases inventory.inventory by the amount of decrement. Usually 1.
+// Used as the inital testing of this redux install
+// May be removed in the future
 export function decrement() {
   return {
     type: DECREMENT,
   };
 }
 
+// Used to process the barcode in receive barcode
 export function barcode(text) {
   return {
     type: BARCODE,
     payload: { text: text },
   };
 }
-
+// Used to update the message state whether for items in order, errors, etc.
 export function updateMessage(obj) {
   return {
     type: UPDATEMESSAGE,
     payload: obj,
   };
 }
-
+// Thunk that sends the barcode to the backend to retrieve the specific item record.
+// On item record retrieval, state is upsdated then an update is sent to the backend to for inventory date & replacement cost
+// State is updated and then the data for the holdings 538a field are retrieved from the backend
+// State is update with 538a field.
+// Uses the loading bar to show progress to user.
 export function sendBarcodeToBackend(barcode) {
   return async function fetchItemDetailThunk(dispatch, getState) {
     try {
       dispatch(showLoading());
-      console.log("barcode in actions.js ---------", barcode);
       const response = await axios.post("http://localhost:4000/api/v1/inventory/", { barcode });
       const respDataObj = response.data.dataObj;
-      console.log("fetchItemDetailThunk-------", respDataObj.data);
       dispatch(sendBarCode(respDataObj));
       const responseWithUpdate = await axios.put("http://localhost:4000/api/v1/inventory/", {
         respDataObj,
@@ -52,8 +62,8 @@ export function sendBarcodeToBackend(barcode) {
       dispatch(actionField(responseWithUpdate.data));
       dispatch(hideLoading());
     } catch (error) {
-      console.error("Invalid barcode number.", error.message);
-      console.log(error);
+      console.error("Possible invalid barcode number.", error.message);
+      console.error(error);
       const callNum = localStorage.getItem("CallNumforTest");
       const obj = {};
       obj.status = false;
@@ -64,6 +74,7 @@ export function sendBarcodeToBackend(barcode) {
   };
 }
 
+// Take the obj returned from the barcode being sent to the backend and converts it to state.
 export function sendBarCode(dataObj) {
   return {
     type: SENDBARCODE,
@@ -91,6 +102,7 @@ export function sendBarCode(dataObj) {
   };
 }
 
+// Updates state for inventory date and replacement cost from updated item in SendBarcodeToBackend thunk.
 export function updateItem(dataObj) {
   return {
     type: UPDATEITEM,
@@ -101,7 +113,9 @@ export function updateItem(dataObj) {
     },
   };
 }
-
+// Thunk for sending data from the inventory update form to the backend for processing in Alma.
+// updates state when data obj is successfully returned.
+// Uses loading bar to show progress to user
 export function updateItemFormQuery(obj) {
   return async function updateItemThunk(dispatch, getState) {
     try {
@@ -109,13 +123,11 @@ export function updateItemFormQuery(obj) {
       const { data } = await axios.put("http://localhost:4000/api/v1/inventory/itemform", {
         obj,
       });
-      console.log("responseWithUpdate ", data);
-      //console.log("responseWithUpdate physical_condition -----", data);
       dispatch(updateItemFormData(data));
       dispatch(hideLoading());
     } catch (error) {
       console.error("Error submitting form data. ", error.message);
-      console.log(error);
+      console.error(error);
       const callNum = localStorage.getItem("CallNumforTest");
       const obj = {};
       obj.status = false;
@@ -126,6 +138,7 @@ export function updateItemFormQuery(obj) {
   };
 }
 
+// Updates state of fields submitted by the inventory update form
 export function updateItemFormData(dataObj) {
   return {
     type: UPDATEITEMFORM,
@@ -139,17 +152,17 @@ export function updateItemFormData(dataObj) {
   };
 }
 
+// Thunk to retrieve 538a holdings text.
 export function actionField(obj) {
   return async function find538aThunk(dispatch, getState) {
     try {
       const text = await axios.put("http://localhost:4000/api/v1/inventory/538Text", {
         obj,
       });
-      console.log("538a Text ************  ", text);
       dispatch(updateaActionText(text));
     } catch (error) {
       console.error("Unable to retrieve 538a field data. ", error.message);
-      console.log(error);
+      console.error(error);
       const callNum = localStorage.getItem("CallNumforTest");
       const obj = {};
       obj.status = false;
@@ -160,6 +173,7 @@ export function actionField(obj) {
   };
 }
 
+// Update state after recieving 538a text
 export function updateaActionText(text) {
   return {
     type: FIND538A,
