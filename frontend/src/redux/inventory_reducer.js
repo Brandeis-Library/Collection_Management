@@ -43,14 +43,19 @@ const initialState = {
 
 export const inventoryReducer = (state = initialState, action) => {
   switch (action.type) {
+    // Fot inital testing of reduux. May be removed in the future.
     case INCREMENT:
       return { ...state, inventory: state.inventory + 1 };
+    // Fot inital testing of reduux. May be removed in the future.
     case DECREMENT:
       return { ...state, inventory: state.inventory - 1 };
+    // initial barcodde reciept from recieve barcode component
     case BARCODE:
       return { ...state, barcode: action.payload.text.text };
+    // modifies the 538a state
     case FIND538A:
       return { ...state, string583a: action.payload.string583a.data };
+    // processes the initially recieved item data obj info into state used in data display component
     case SENDBARCODE:
       return {
         ...state,
@@ -74,6 +79,7 @@ export const inventoryReducer = (state = initialState, action) => {
         provenance: action.payload.provenance.value,
         condition: action.payload.condition.value,
       };
+    // processes the auto update of inventory date and replacement cost from the backend into state
     case UPDATEITEM:
       return {
         ...state,
@@ -81,6 +87,7 @@ export const inventoryReducer = (state = initialState, action) => {
         inventoryDate: action.payload.inventoryDate,
         replacementCost: action.payload.replacementCost,
       };
+    // adds data from updated fields in inventory form to state after they are updated in Alma
     case UPDATEITEMFORM:
       return {
         ...state,
@@ -90,8 +97,8 @@ export const inventoryReducer = (state = initialState, action) => {
         provenance: action.payload.provenance,
         condition: action.payload.condition,
       };
+    // used to update message state used by message component
     case UPDATEMESSAGE:
-      console.log("inside updatemessage reducer ", action.payload.obj);
       return { ...state, message: { ...action.payload.obj } };
     default:
       return state;
