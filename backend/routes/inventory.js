@@ -14,7 +14,6 @@ const replacementCost = require("../helperFunctions/replacmentCost");
 // used a post route to a "get/retrieval" as the barcode needs to be shared as payload.
 router.post("/", async function (req, res, next) {
   try {
-    console.log("req.body.barcode.text)", req.body.barcode.text);
     const barcode = req.body.barcode.text;
     //item retrieve query to Alma backend. API URL, Item Barcode, and APIKEY
     const { data } = await axios.get(

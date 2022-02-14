@@ -51,7 +51,6 @@ class UseLocalStorageContainer extends Component {
   };
 
   render() {
-    console.log("firstCallNum", this.state.firstCallNum);
     return (
       <div>
         <h5> Current Call #: {this.props.callNum} </h5>
