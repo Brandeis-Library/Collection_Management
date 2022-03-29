@@ -1,37 +1,52 @@
 _{Collection Management Applicaiton}_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _{A series of modules for managing your libraries physical colltion to fill in functionality that is not included in the Ex Libris suite of products.}, {3/29/2022}_
 
-#### By _**{List of contributors}**_
+#### By _**{Chris Underwood}**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage. Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+\_{A series of modules for managing your libraries physical colltion to fill in functionality that is not included in the Ex Libris suite of products.
+
+The 1st module being built is inventory. When a barcode is scanned it goes to Alma and finds/returns the item object. When the item obj is received a series of API calls happen automatically: 1) the inventory data is updated on the item record, 2) where the call number is in the proper order, 3) replacement cost is verifeid to be at least a mininum amount and 4) any data in the 538a field is retrieved from the holdings record and shown.
+
+There are customized error messages for all async functions via redux on the front end.
+
+Future modules include a stack map feature, bulk checkin, integration with iron mountain offsite storage, and an admin section.
+}\_
 
 ## Setup/Installation Requirements
 
-- _This is a great place_
-- _to list setup instructions_
-- _in a simple_
-- _easy-to-understand_
-- _format_
+- Download the files
+- Run npm install in the root of both backend & frontend folders
+- Configure the .env file using .env2 as a model at both folder roots.
+- run npm start @ both folders root to start the application.
+- profit!
 
 _{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know? Outline any issues that would impact use of your application. Share any workarounds that are in place. }_
+_{ This is a work in progess so it is likely that if you download it today, you will likely have some incomplete functionality. Contact support below for more information. }_
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns. Encourage them to contact you or make a contribution to the code.}_
+_{libsys-group@brandeis.edu}_
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+_{Node.js, vanilla JS, npm, axios, cors. dotenv, Express.js, lc_call_number_compare, mongoose, morgan, mongodb, nodemon, xmldom, xpath, create-react-app, react, react-bootstrap, react-dom, react-redux, react-redux-loading-bar, react-router-dom, react-scripts, redux-logger, redux-thunk}_
 
 ### License
 
-_{Determine the license under which this application can be used. See below for more details on licensing.}_
+\_{MIT License
 
-Copyright (c) 2016 **_{List of contributors or company name}_**
+Copyright (c) [2022][brandeis university library]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.}\_
+
+Copyright (c) 2022 **_{Chris Underwood, Library Applications Developer, Brandeis University Library}_**
