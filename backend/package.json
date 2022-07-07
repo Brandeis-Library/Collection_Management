@@ -20,5 +20,8 @@
     "nodemon": "^2.0.15",
     "xmldom": "^0.6.0",
     "xpath": "^0.0.32"
+  },
+  "devDependencies": {
+    "vitest": "^0.17.0"
   }
 }
