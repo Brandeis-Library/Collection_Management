@@ -4,7 +4,7 @@
   "description": "Backend of the inventory section of the Collection Management Application.",
   "main": "app.js",
   "scripts": {
-    "test": "vitest",
+    "test": "vitest --reporter verbose",
     "start": "nodemon app.js"
   },
   "author": "Chris Underwood Library Applicaitons Developer @ Brandeis University",
