@@ -40,5 +40,3 @@ describe("replacementCost()", () => {
     expect(result2).toBe("145");
   });
 });
-
-// will accept a number price
