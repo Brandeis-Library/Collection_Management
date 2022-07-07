@@ -33,26 +33,26 @@ app.get("/", (req, res) => {
 // create routes
 app.use("/api/v1/inventory", inventoryRouter);
 
-// server
-// app.listen(port, () => {
-//   console.log(`Inventory/Collection Management app listening at http://localhost:${port}`);
-// });
+//server
+app.listen(port, () => {
+  console.log(`Inventory/Collection Management app listening at http://localhost:${port}`);
+});
 
-mongoose.connect(
-  `mongodb+srv://${process.env.MONGODB_NAME}:${process.env.MONGODB_PASSWORD}@cluster0.flkwc.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  (err) => {
-    if (err) {
-      console.error("FAILED TO CONNECT TO MONGODB");
-      console.error(err);
-    } else {
-      console.log("CONNECTED TO MONGODB!!");
-      app.listen(port, () => {
-        console.log(`Inventory/Collection Management app listening at http://localhost:${port}`);
-      });
-    }
-  },
-);
+// mongoose.connect(
+//   `mongodb+srv://${process.env.MONGODB_NAME}:${process.env.MONGODB_PASSWORD}@cluster0.flkwc.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`,
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   },
+//   (err) => {
+//     if (err) {
+//       console.error("FAILED TO CONNECT TO MONGODB");
+//       console.error(err);
+//     } else {
+//       console.log("CONNECTED TO MONGODB!!");
+//       app.listen(port, () => {
+//         console.log(`Inventory/Collection Management app listening at http://localhost:${port}`);
+//       });
+//     }
+//   },
+// );
