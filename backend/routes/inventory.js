@@ -26,6 +26,7 @@ router.post("/", async function (req, res, next) {
     );
     //send data to a helper function to format the data for the frontend data store.
     const dataObj = retrieveDataItems(data);
+
     res.status(200).send({ dataObj: dataObj });
   } catch (error) {
     console.error("retreiveItemErrorAPI Error:   ", error.message);
@@ -50,6 +51,7 @@ router.put("/itemform", async function (req, res, next) {
         process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
       dataObj,
     );
+    console.log("data------------", data);
     res.json(data);
   } catch (error) {
     console.error("updateItemErrorAPI Error:   ", error.message);
