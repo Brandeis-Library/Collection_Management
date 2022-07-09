@@ -24,10 +24,12 @@ describe("retrieveDataItems()", () => {
   });
 
 
-  // it("should return all the necessary data when an item if found and in a temp location", () => {
-  //   item.data.holding_data.in_temp_location = true;
+  it("should return all the necessary data when an item if found and in a temp location", () => {
+    item.data.holding_data.in_temp_location = true;
+    item.data.holding_data.temp_library = { desc: "Main" };
+    item.data.holding_data.temp_location = { desc: "Display" };
 
-  //   const item1 = retrieveDataItems(item.data);
-  //   expect(1).toEqual(1);
-  // });
+    const item1 = retrieveDataItems(item.data);
+    expect(item1.tempLib).toBe("Main");
+  });
 });

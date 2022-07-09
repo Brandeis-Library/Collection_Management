@@ -24,7 +24,7 @@ const itemRecordObj = {
 // function processes the data that comes back from the successful inital
 // Alma call into a format usable by the frontend data store
 const retrieveDataItems = (data) => {
-  //console.log("+++++++++++", data.bib_data);
+  //console.log("+++++++++++", data.holding_data);
   itemRecordObj.link = data.link;
   itemRecordObj.title = data.bib_data.title;
   itemRecordObj.mms_id = data.bib_data.mms_id;
