@@ -5,7 +5,9 @@ import retrieveDataItems from "./retrieveItemData";
 import { item } from "./itemTestData.js";
 
 describe("retrieveDataItems()", () => {
- 
+//  beforeEach(()=> {
+//   return item
+//  })
 
   it("should return should return the barcode broken out from the original data obj", () => {
     //console.log("-------------", item);
