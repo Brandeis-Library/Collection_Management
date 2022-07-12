@@ -1,4 +1,4 @@
-export const item = {
+export const itemObj = {
   data: {
     bib_data: {
       mms_id: "997924640101921",
