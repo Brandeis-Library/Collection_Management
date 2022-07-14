@@ -51,33 +51,18 @@ it("should return the data fields needed for the application from the original d
   });
 
   it("should return the temp location when an item if found and in a temp location", () => {
-    //const item = itemObj
     item.data.holding_data.in_temp_location = true;
     item.data.holding_data.temp_library = { desc: "Main" };
     item.data.holding_data.temp_location = { desc: "Display" };
-
     const item1 = retrieveDataItems(item.data);
     expect(item1.tempLoc).toBe("Display");
   });
 
- 
-
-  it("should return should return an eror if a barcode is not found", () => {
-    //let errorMessage
-
-   // const item = itemObj
-    //console.log("item", item)
-    delete item.data.item_data.barcode
-    //console.log("item", item)
-    // const func = () => { 
-    //    retrieveDataItems(item.data)
-    // };
-
-      
+  it("should return should return 15 property names", () => {
     const item1 = retrieveDataItems(item.data);
-    console.log('item post transform -----------------------------', item1)
-    //expect(func).toThrowError()
-    expect(item.data.item_data.barcode).toEqual(undefined)
+    delete item1.dataObjTotal
+    let objKeys = Object.keys(item1)
+    expect(objKeys.length).toEqual(18)
   });
 
 });
