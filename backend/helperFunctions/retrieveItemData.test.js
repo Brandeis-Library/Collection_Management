@@ -60,9 +60,9 @@ it("should return the data fields needed for the application from the original d
 
   it("should return should return 15 property names", () => {
     const item1 = retrieveDataItems(item.data);
-    delete item1.dataObjTotal
-    let objKeys = Object.keys(item1)
-    expect(objKeys.length).toEqual(18)
+    delete item1.dataObjTotal;
+    let objKeys = Object.keys(item1);
+    expect(objKeys.length).toEqual(18);
   });
 
 });
