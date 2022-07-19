@@ -1,0 +1,25 @@
+<? xml version = "1.0" encoding = "UTF-16" ?>
+<record>
+    <leader>00245cx   22001091  4500</leader>
+    <controlfield tag="001">AHU-1242</controlfield>
+    <controlfield tag="004">AHS-8832</controlfield>
+    <controlfield tag="007">ta</controlfield>
+    <controlfield tag="008">9910250u    0   0001uu   0991025</controlfield>
+    <controlfield tag="005">20201130232850.0</controlfield>
+    <datafield ind1="0"
+        ind2=" "
+        tag="852">
+        <subfield code="b">MAIN</subfield>
+        <subfield code="c">MSTCK</subfield>
+        <subfield code="h">D764</subfield>
+        <subfield code="i">.Z34 1998</subfield>
+        <subfield code="p">39097006597927</subfield>
+    </datafield>
+    <datafield ind1=" "
+        ind2=" "
+        tag="969">
+        <subfield code="a">Singlepart</subfield>
+    </datafield>
+</record>;
+
+<!-- "Only librarians like to search, Everyone else likes to find." -->
