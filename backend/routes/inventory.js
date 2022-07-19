@@ -8,7 +8,7 @@ const lc = require("lc_call_number_compare");
 
 const retrieveDataItems = require("../helperFunctions/retrieveItemData");
 const replacementCost = require("../helperFunctions/replacementCost");
-const retrieve538aString = require("../helperFunctions/string538a");
+const retrieve538aString = require("../helperFunctions/string583a");
 
 // route to retrieve record by barcode. Initial inventory data retrieval.
 // used a post route to a "get/retrieval" as the barcode needs to be shared as payload.
