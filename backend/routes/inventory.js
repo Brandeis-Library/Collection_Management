@@ -3,12 +3,12 @@ const router = express.Router();
 const axios = require("axios");
 const dotenv = require("dotenv");
 dotenv.config();
-const xpath = require("xpath");
-const dom = require("xmldom").DOMParser;
+
 const lc = require("lc_call_number_compare");
 
 const retrieveDataItems = require("../helperFunctions/retrieveItemData");
 const replacementCost = require("../helperFunctions/replacementCost");
+const retrieve538aString = require("../helperFunctions/string538a");
 
 // route to retrieve record by barcode. Initial inventory data retrieval.
 // used a post route to a "get/retrieval" as the barcode needs to be shared as payload.
@@ -18,11 +18,11 @@ router.post("/", async function (req, res, next) {
     //item retrieve query to Alma backend. API URL, Item Barcode, and APIKEY
     const { data } = await axios.get(
       process.env.EXLIBRIS_API_ROOT +
-        process.env.EXLIBRIS_API_PATH +
-        barcode +
-        "&apikey=" +
-        process.env.EXLIBRIS_API_BIB_GET_KEY +
-        "&expand=p_avail",
+      process.env.EXLIBRIS_API_PATH +
+      barcode +
+      "&apikey=" +
+      process.env.EXLIBRIS_API_BIB_GET_KEY +
+      "&expand=p_avail",
     );
     //send data to a helper function to format the data for the frontend data store.
     const dataObj = retrieveDataItems(data);
@@ -38,21 +38,21 @@ router.post("/", async function (req, res, next) {
 // route for sending the updating data from the item update frontend form.
 router.put("/itemform", async function (req, res, next) {
   try {
-    let t=4
+
     const dataObj = req.body.obj;
     let { data } = await axios.put(
       process.env.EXLIBRIS_API_ROOT +
-        "/almaws/v1/bibs/" +
-        dataObj.bib_data.mms_id +
-        "/holdings/" +
-        dataObj.holding_data.holding_id +
-        "/items/" +
-        dataObj.item_data.pid +
-        "?apikey=" +
-        process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
+      "/almaws/v1/bibs/" +
+      dataObj.bib_data.mms_id +
+      "/holdings/" +
+      dataObj.holding_data.holding_id +
+      "/items/" +
+      dataObj.item_data.pid +
+      "?apikey=" +
+      process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
       dataObj,
     );
-    console.log("data------------", data);
+
     res.json(data);
   } catch (error) {
     console.error("updateItemErrorAPI Error:   ", error.message);
@@ -68,28 +68,19 @@ router.put("/538Text", async function (req, res, next) {
     //item retrieve query to Alma backend. Holdings API URL, Item Barcode, and APIKEY
     const { data } = await axios.get(
       process.env.EXLIBRIS_API_ROOT +
-        process.env.EXLIBRIS_API_PATH_HOLDINGS +
-        mmsId +
-        "/holdings/" +
-        holdingId +
-        "?apikey=" +
-        process.env.EXLIBRIS_API_BIB_GET_KEY,
+      process.env.EXLIBRIS_API_PATH_HOLDINGS +
+      mmsId +
+      "/holdings/" +
+      holdingId +
+      "?apikey=" +
+      process.env.EXLIBRIS_API_BIB_GET_KEY,
     );
 
     // Pulling out the XML hodings data and pulls out any text info in the 538a field.
     // The system no longer just searches for committed to retain only.
-    let string583a = "";
-    let document = data.anies[0];
-    document = document.toString();
-    let xmlParsedDoc = await new dom().parseFromString(document);
-    string583a = xpath.select("//datafield[@tag=583]/subfield", xmlParsedDoc);
-    if (string583a.length === 0) {
-      string583a = "----";
-    } else {
-      string583a = string583a[0].toString();
-      string583a = string583a.replace(/<subfield(.*?)>/g, "");
-      string583a = string583a.replace(/<\/subfield>/g, "");
-    }
+
+    let string583a = await retrieve538aString(data);
+    console.log("string583a++++++++++++++++++++++++++", string583a);
     // Just sends back the string text. Not in obj form.
     res.send(string583a);
   } catch (error) {
@@ -129,14 +120,14 @@ router.put("/", async function (req, res) {
 
     let { data } = await axios.put(
       process.env.EXLIBRIS_API_ROOT +
-        "/almaws/v1/bibs/" +
-        dataObj.bib_data.mms_id +
-        "/holdings/" +
-        dataObj.holding_data.holding_id +
-        "/items/" +
-        dataObj.item_data.pid +
-        "?apikey=" +
-        process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
+      "/almaws/v1/bibs/" +
+      dataObj.bib_data.mms_id +
+      "/holdings/" +
+      dataObj.holding_data.holding_id +
+      "/items/" +
+      dataObj.item_data.pid +
+      "?apikey=" +
+      process.env.EXLIBRIS_API_BIB_UPDATE_KEY,
       dataObj,
     );
     // sends updated data obj received from Alma back to the front end.
