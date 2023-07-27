@@ -25,21 +25,29 @@ router.post('/post', async (req, res) => {
         console.error(err);
         res.status(400).json({ message: err.message });
     }
-
-
-
-
 });
 
 //Get all Method
 router.get('/getAll', async (req, res) => {
-    const data = await userModel.find();
-    res.status(200).json({ data });
+    try {
+        const data = await userModel.find();
+        res.status(200).json({ data });
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ message: err.message });
+    }
 });
 
 //Get by ID Method
-router.get('/getOne/:id', (req, res) => {
-    res.status(200).send('Get by ID API').json({});
+router.get('/getOne/:id', async (req, res) => {
+    try {
+
+        const data = await userModel.findById(req.params.id);
+        res.status(200).json(data);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ message: err.message });
+    }
 });
 
 //Update by ID Method
