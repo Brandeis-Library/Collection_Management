@@ -17,6 +17,9 @@ const userSchema = new Schema({
   role: {
     type: String,
     required: [true, "Please add a role."],
+    enum: [
+      "Admin", "Staff", "Student"
+    ]
   },
   createdAt: {
     type: Date,

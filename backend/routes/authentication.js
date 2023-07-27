@@ -11,8 +11,24 @@ router.get('/', (req, res) => {
 });
 
 //Post Method
-router.post('/post', (req, res) => {
-    res.send('Post API');
+router.post('/post', async (req, res) => {
+    const data = new userModel({
+        name: req.body.name,
+        password: req.body.password,
+        role: req.body.role
+    });
+    try {
+        const dataToSave = await data.save();
+        console.log("dataToSave---------", dataToSave);
+        res.status(200).send(dataToSave);
+    } catch (err) {
+        console.error(err);
+        res.status(400).json({ message: err.message });
+    }
+
+
+
+
 });
 
 //Get all Method
