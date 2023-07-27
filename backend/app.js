@@ -13,6 +13,8 @@ const mongoString = process.env.MONGO_DATABASE_URL;
 
 // import routes
 const inventoryRouter = require("./routes/inventory");
+const authRouter = require("./routes/authentication");
+
 // connectMongoDB
 mongoose.connect(mongoString);
 const database = mongoose.connection;
@@ -46,29 +48,13 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Collection Mangement application backend!");
 });
 
-// create routes
+// inventory route
 app.use("/api/v1/inventory", inventoryRouter);
+
+// authentication routes
+app.use("/api/v1/auth", authRouter);
 
 //server
 app.listen(port, () => {
   console.log(`Inventory/Collection Management app listening at http://localhost:${port}`);
 });
-
-// mongoose.connect(
-//   `mongodb+srv://${process.env.MONGODB_NAME}:${process.env.MONGODB_PASSWORD}@cluster0.flkwc.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`,
-//   {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   },
-//   (err) => {
-//     if (err) {
-//       console.error("FAILED TO CONNECT TO MONGODB");
-//       console.error(err);
-//     } else {
-//       console.log("CONNECTED TO MONGODB!!");
-//       app.listen(port, () => {
-//         console.log(`Inventory/Collection Management app listening at http://localhost:${port}`);
-//       });
-//     }
-//   },
-// );

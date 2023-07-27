@@ -141,7 +141,7 @@ router.put("/", async function (req, res) {
 // generic get route @ root to test avaialablity
 router.get("/", function (req, res, next) {
   try {
-    res.status(200).send("Inventory home page");
+    res.status(200).send("Inventory home route");
   } catch (error) {
     console.error("inventory Root Get Error:   ", error.message);
     next({ status: false, message: error.message });
