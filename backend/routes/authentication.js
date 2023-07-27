@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const userModel = require('../models/user.js');
 const axios = require("axios");
 const dotenv = require("dotenv");
 dotenv.config();
