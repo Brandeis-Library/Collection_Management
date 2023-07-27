@@ -32,13 +32,14 @@ router.post('/post', async (req, res) => {
 });
 
 //Get all Method
-router.get('/getAll', (req, res) => {
-    res.send('Get All API');
+router.get('/getAll', async (req, res) => {
+    const data = await userModel.find();
+    res.status(200).json({ data });
 });
 
 //Get by ID Method
 router.get('/getOne/:id', (req, res) => {
-    res.send('Get by ID API');
+    res.status(200).send('Get by ID API').json({});
 });
 
 //Update by ID Method
