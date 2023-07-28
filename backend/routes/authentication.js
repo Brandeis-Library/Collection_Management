@@ -20,7 +20,7 @@ router.post('/post', async (req, res) => {
     try {
         const dataToSave = await data.save();
         console.log("dataToSave---------", dataToSave);
-        res.status(200).send(dataToSave);
+        res.status(201).send(dataToSave);
     } catch (err) {
         console.error(err);
         res.status(400).json({ message: err.message });
@@ -65,8 +65,15 @@ router.patch('/update/:id', async (req, res) => {
 });
 
 //Delete by ID Method
-router.delete('/delete/:id', (req, res) => {
-    res.send('Delete by ID API');
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await userModel.findByIdAndDelete(id);
+        res.status(200).send(`User with id ${id} has been deleted. \n\n  ${data}`);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+
 });
 
 module.exports = router;
