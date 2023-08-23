@@ -1,9 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const userModel = require('../models/user.js');
-const axios = require("axios");
 const dotenv = require("dotenv");
 dotenv.config();
+const passport = require('passport');
+
+//  passport routes
+app.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
+    // Generate and send a JWT token
+    // ...
+});
+
+app.get('/protected', passport.authenticate('jwt', { session: false }), (req, res) => {
+    res.json({ message: 'This is a protected route.' });
+});
 
 // Route default method
 router.get('/', (req, res) => {

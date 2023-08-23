@@ -11,6 +11,24 @@ const port = process.env.PORT || 4000;
 dotenv.config({ path: "./config/config.env" });
 const mongoString = process.env.MONGO_DATABASE_URL;
 
+// security info
+
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const JwtStrategy = require('passport-jwt').Strategy;
+
+// Configure local strategy
+passport.use(new LocalStrategy((username, password, done) => {
+  // Verify the username and password against your user database
+  // ...
+}));
+
+// Configure JWT strategy
+passport.use(new JwtStrategy(/* ... */));
+
+// Initialize Passport.js middleware
+app.use(passport.initialize());
+
 // import routes
 const inventoryRouter = require("./routes/inventory");
 const authRouter = require("./routes/authentication");
