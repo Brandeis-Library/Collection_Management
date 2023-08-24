@@ -10,6 +10,7 @@ const passport = require('passport');
 
 // Route default method
 router.get('/', (req, res) => {
+    console.log("login req.body----------", req.body);
     res.send("Authentation home route.");
 });
 
