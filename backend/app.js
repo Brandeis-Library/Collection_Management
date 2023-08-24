@@ -1,7 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-require('./helperFunctions/passport');
+
 
 
 const morgan = require("morgan");
@@ -17,6 +17,10 @@ const inventoryRouter = require("./routes/inventory");
 const authRouter = require("./routes/authentication");
 //const userRouter = require("./routes/user", passport.authenticate('jwt', { session: false }), user);
 const userRouter = require("./routes/user");
+
+const passport = require('passport');
+
+require('./helperFunctions/passport');
 
 // connectMongoDB
 mongoose.connect(mongoString);
@@ -55,7 +59,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/inventory", inventoryRouter);
 
 // authentication routes
-app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/auth", passport.authenticate('jwt', { session: false }), authRouter);
 
 // user routes
 app.use("/api/v1/users", userRouter);
