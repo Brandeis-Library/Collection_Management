@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+require('./helperFunctions/passport');
 
 
 const morgan = require("morgan");
@@ -11,11 +12,11 @@ const port = process.env.PORT || 4000;
 dotenv.config({ path: "./config/config.env" });
 const mongoString = process.env.MONGO_DATABASE_URL;
 
-
-
 // import routes
 const inventoryRouter = require("./routes/inventory");
 const authRouter = require("./routes/authentication");
+//const userRouter = require("./routes/user", passport.authenticate('jwt', { session: false }), user);
+const userRouter = require("./routes/user");
 
 // connectMongoDB
 mongoose.connect(mongoString);
@@ -55,6 +56,9 @@ app.use("/api/v1/inventory", inventoryRouter);
 
 // authentication routes
 app.use("/api/v1/auth", authRouter);
+
+// user routes
+app.use("/api/v1/users", userRouter);
 
 //server
 app.listen(port, () => {
