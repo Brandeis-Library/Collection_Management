@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, FormGroup, FormControl } from 'react-bootstrap';
-import { login } from '../redux/actions';
+import { validateUser as login } from '../redux/actions';
 
 
 class AuthForm extends Component {
@@ -20,12 +20,12 @@ class AuthForm extends Component {
         this.setState({ password: event.target.value });
     };
 
-    signup = () => {
+    // signup = () => {
 
-        const { username, password } = this.state;
-        this.setState({ buttonClicked: true });
-        this.props.signup({ username, password });
-    };
+    //     const { username, password } = this.state;
+    //     this.setState({ buttonClicked: true });
+    //     this.props.signup({ username, password });
+    // };
 
     login = () => {
         const { username, password } = this.state;
@@ -66,8 +66,8 @@ class AuthForm extends Component {
 
                     <div>
                         <Button variant="success" onClick={this.login}>Sign In</Button>
-                        <span> or </span>
-                        <Button variant="primary" onClick={this.signup}>Sign Up</Button>
+                        {/* <span> or </span>
+                        <Button variant="primary" onClick={this.signup}>Sign Up</Button> */}
                     </div>
 
                 </form>
@@ -87,7 +87,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        //signup: ({ username, password }) => dispatch(signup({ username, password })),
         login: ({ username, password }) => dispatch(login({ username, password })),
     };
 };

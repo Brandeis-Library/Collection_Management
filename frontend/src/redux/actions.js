@@ -7,7 +7,7 @@ import {
   UPDATEITEMFORM,
   FIND538A,
   UPDATEMESSAGE,
-  USERACCOUNT
+  LOGIN
 } from "./actionTypes";
 import axios from "axios";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
@@ -180,7 +180,7 @@ export function actionField(obj) {
 // Will also process error messages if the user is not found.
 export function validateUser(obj) {
   return {
-    type: USERACCOUNT, payload: { user: obj }
+    type: LOGIN, payload: { user: obj }
   };
 }
 
