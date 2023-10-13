@@ -2,8 +2,6 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
-
-
 const morgan = require("morgan");
 const cors = require("cors");
 const port = process.env.PORT || 4000;
@@ -14,13 +12,14 @@ const mongoString = process.env.MONGO_DATABASE_URL;
 
 // import routes
 const inventoryRouter = require("./routes/inventory");
-const authRouter = require("./routes/authentication");
+
 //const userRouter = require("./routes/user", passport.authenticate('jwt', { session: false }), user);
 const userRouter = require("./routes/user");
+const authRouter = require("./routes/authentication");
 
 const passport = require('passport');
 
-require('./helperFunctions/passport');
+require('./passport.js');
 
 // connectMongoDB
 mongoose.connect(mongoString);
@@ -59,12 +58,14 @@ app.get("/", (req, res) => {
 app.use("/api/v1/inventory", inventoryRouter);
 
 // authentication routes
-app.use("/api/v1/auth", passport.authenticate('jwt', { session: false }), authRouter);
+app.use("/api/v1/auth", authRouter);
 
 // user routes
-app.use("/api/v1/users", userRouter);
+app.use("/api/v1/users", passport.authenticate('jwt', { session: false }), userRouter);
 
 //server
 app.listen(port, () => {
   console.log(`Inventory/Collection Management app listening at http://localhost:${port}`);
 });
+
+module.exports = app;

@@ -10,6 +10,11 @@ router.get('/', (req, res) => {
     res.send("Authentation home route.");
 });
 
+/* GET user profile. */
+router.get('/profile', function (req, res, next) {
+    res.send(req.user);
+});
+
 //Post Method
 router.post('/post', async (req, res) => {
     const data = new userModel({

@@ -182,3 +182,7 @@ export function updateaActionText(text) {
     },
   };
 }
+
+// Thunk for sending username and password to backend for validation.
+// State will be updated if account is valid with account information.
+// Will also process error messages if the user is not found.
