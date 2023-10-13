@@ -7,6 +7,7 @@ import {
   UPDATEITEMFORM,
   FIND538A,
   UPDATEMESSAGE,
+  USERACCOUNT
 } from "./actionTypes";
 import axios from "axios";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
@@ -173,6 +174,16 @@ export function actionField(obj) {
   };
 }
 
+
+// Thunk for sending username and password to backend for validation.
+// State will be updated if account is valid with account information.
+// Will also process error messages if the user is not found.
+export function validateUser(obj) {
+  return {
+    type: USERACCOUNT, payload: { user: obj }
+  };
+}
+
 // Update state after recieving 538a text
 export function updateaActionText(text) {
   return {
@@ -182,7 +193,3 @@ export function updateaActionText(text) {
     },
   };
 }
-
-// Thunk for sending username and password to backend for validation.
-// State will be updated if account is valid with account information.
-// Will also process error messages if the user is not found.
