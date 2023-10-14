@@ -179,6 +179,7 @@ export function actionField(obj) {
 // State will be updated if account is valid with account information.
 // Will also process error messages if the user is not found.
 export function validateUser(obj) {
+  console.log("inside validateUser------", obj);
   return {
     type: LOGIN, payload: { user: obj }
   };
