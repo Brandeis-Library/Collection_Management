@@ -44,7 +44,8 @@ class AuthForm extends Component {
 
         return (
 
-            <div><h2>Dragon Stack</h2>
+            <div>
+                <h2> Sign In to use the application.</h2>
 
                 <form>
                     <FormGroup>
