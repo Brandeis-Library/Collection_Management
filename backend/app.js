@@ -13,13 +13,9 @@ const mongoString = process.env.MONGO_DATABASE_URL;
 // import routes
 const inventoryRouter = require("./routes/inventory");
 
-//const userRouter = require("./routes/user", passport.authenticate('jwt', { session: false }), user);
 const userRouter = require("./routes/user");
-const authRouter = require("./routes/authentication");
 
-const passport = require('passport');
 
-require('./passport.js');
 
 // connectMongoDB
 mongoose.connect(mongoString);
