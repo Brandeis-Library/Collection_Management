@@ -53,11 +53,8 @@ app.get("/", (req, res) => {
 // inventory route
 app.use("/api/v1/inventory", inventoryRouter);
 
-// authentication routes
-app.use("/api/v1/auth", authRouter);
-
 // user routes
-app.use("/api/v1/users", passport.authenticate('jwt', { session: false }), userRouter);
+app.use("/api/v1/users", userRouter);
 
 //server
 app.listen(port, () => {
