@@ -44,10 +44,10 @@ router.get('/getAll', async (req, res) => {
 });
 
 //Get by ID Method
-router.get('/getOne/:name', async (req, res) => {
+router.post('/getOne', async (req, res) => {
     try {
-        console.log("req.params.name", req.params.name);
-        let nameObj = { "name": req.params.name };
+        console.log("req.params.name", req.body.name);
+        let nameObj = { "name": req.body.name };
         console.log("nameObj ", nameObj);
         const data = await userModel.find(nameObj);
         res.status(200).json(data);
