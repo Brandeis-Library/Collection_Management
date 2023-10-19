@@ -179,12 +179,33 @@ export function actionField(obj) {
 // State will be updated if account is valid with account information.
 // Will also process error messages if the user is not found.
 export function validateUser(obj) {
-  console.log("inside validateUser------", obj);
+  return async function loginUser(dispatch, getState) {
+    try {
+      console.log("inside validateUser------", obj);
+      const dataObj = await axios.post("http://localhost:4000/api/v1/users/getOne", {
+        obj,
+      });
+      console.log(dataObj);
+      dispatch(updateUser(dataObj));
+    } catch (error) {
+      console.error("Unable to login user.", error.message);
+      console.error(error);
+      const obj = {};
+      obj.status = false;
+      obj.message = "Unable to login user. " + error.message;
+
+      dispatch(updateMessage({ obj }));
+    }
+  };
+}
+
+// Update state with signed in user.
+
+export function updateUser(obj) {
   return {
     type: LOGIN, payload: { user: obj }
   };
 }
-
 // Update state after recieving 538a text
 export function updateaActionText(text) {
   return {
