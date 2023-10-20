@@ -185,7 +185,7 @@ export function validateUser(obj) {
       const dataObj = await axios.post("http://localhost:4000/api/v1/users/getOne", {
         obj,
       });
-      console.log(dataObj);
+      console.log("inside login user thunk", dataObj);
       dispatch(updateUser(dataObj));
     } catch (error) {
       console.error("Unable to login user.", error.message);

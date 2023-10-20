@@ -6,7 +6,7 @@ export default class Home extends Component {
         return (
             <div>
                 <h1>This is the Home page.</h1>
-                <div>Welcome, {this.props.user.username}</div>
+                <div>Welcome, {this.props.user.username}---{this.props.user.role}</div>
             </div>
         );
     }
