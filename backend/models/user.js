@@ -6,6 +6,8 @@ const userSchema = new Schema({
   name: {
     type: String,
     required: [true, "Please add a name."],
+    minlength: 6,
+    maxlength: 25,
   },
   password: {
     type: String,

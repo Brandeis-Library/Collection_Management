@@ -37,8 +37,14 @@ class AuthForm extends Component {
                     status: false, message: "username and password must be entered."
                 };
                 this.props.updateMessage({ obj });
+            } else if (password.length < 7 || password.length > 25 ||
+                username.length < 7 || username.length > 25) {
+                const obj = {
+                    status: false, message: "username and password must be 6 or greater and less 26 characters."
+                };
+                this.props.updateMessage({ obj });
             }
-            //const { username, password } = this.state;
+
             else {
                 this.setState({ buttonClicked: true });
                 this.props.login({ username, password });
