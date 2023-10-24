@@ -12,10 +12,16 @@ import My404Component from "./components/My404Component";
 
 function App() {
 
-  const AuthRoute = (props) => {
+  const AuthRouteStudent = (props) => {
+    console.log("props inside auth route", props);
+    console.log("store.getState().account.role", store.getState().account.role);
     if (!store.getState().account.loggedIn) {
       return <Redirect to={{ pathname: '/' }} />;
-    } else {
+    } else if (store.getState().account.role === "Student" || store.getState().account.role === "Staff" || store.getState().account.role === "Admin") {
+
+      return <Redirect to={{ pathname: '/' }} />;
+    }
+    else {
       const { component, path } = props;
       return <Route path={path} component={component} />;
     }
@@ -26,7 +32,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path="/" component={Root} exact />
-        <AuthRoute path="/inventory" component={Inventory} />
+        <AuthRouteStudent path="/inventory" component={Inventory} />
         <AuthRoute path="/mapping" component={Mapping} />
         <AuthRoute path="/admin" component={Admin} />
         <AuthRoute path="/BulkCheckin" component={BulkCheckin} />
