@@ -19,11 +19,11 @@ function App() {
       return <Redirect to={{ pathname: '/' }} />;
     } else if (store.getState().account.role === "Student" || store.getState().account.role === "Staff" || store.getState().account.role === "Admin") {
 
-      return <Redirect to={{ pathname: '/' }} />;
-    }
-    else {
       const { component, path } = props;
       return <Route path={path} component={component} />;
+    }
+    else {
+      return <Redirect to={{ pathname: '/' }} />;
     }
   };
 
@@ -33,27 +33,26 @@ function App() {
     if (!store.getState().account.loggedIn) {
       return <Redirect to={{ pathname: '/' }} />;
     } else if (store.getState().account.role === "Staff" || store.getState().account.role === "Admin") {
-
-      return <Redirect to={{ pathname: '/' }} />;
-    }
-    else {
       const { component, path } = props;
       return <Route path={path} component={component} />;
     }
+    else {
+      return <Redirect to={{ pathname: '/' }} />;
+    }
   };
 
-  const AuthRouteStaff = (props) => {
+  const AuthRouteAdmin = (props) => {
     console.log("props inside auth route", props);
     console.log("store.getState().account.role", store.getState().account.role);
     if (!store.getState().account.loggedIn) {
       return <Redirect to={{ pathname: '/' }} />;
-    } else if (store.getState().account.role === "Staff" || store.getState().account.role === "Admin") {
+    } else if (store.getState().account.role === "Admin") {
 
-      return <Redirect to={{ pathname: '/' }} />;
-    }
-    else {
       const { component, path } = props;
       return <Route path={path} component={component} />;
+    }
+    else {
+      return <Redirect to={{ pathname: '/' }} />;
     }
   };
 
@@ -64,7 +63,7 @@ function App() {
         <Route path="/" component={Root} exact />
         <AuthRouteStudent path="/inventory" component={Inventory} />
         <AuthRouteStaff path="/mapping" component={Mapping} />
-        <AuthRoute path="/admin" component={Admin} />
+        <AuthRouteAdmin path="/admin" component={Admin} />
         <AuthRouteStaff path="/BulkCheckin" component={BulkCheckin} />
         <Route path="/IronMountain" component={IronMountain} />
         <Route path="/404" component={My404Component} />
