@@ -186,10 +186,20 @@ export function validateUser(obj) {
         obj,
       });
       console.log("inside login user thunk", dataObj);
+      console.log("checking user array length", dataObj.data.length);
+      if (dataObj.data.length === 0) {
+        console.log("inside data.length === 0.");
+        const error = new Error("noUser");
+        error.message = "User not found.";
+        error.status = 404;
+        console.log("error inside if data.length=0-----", error);
+        throw error;
+      }
       dispatch(updateUser(dataObj));
     } catch (error) {
       console.error("Unable to login user.", error.message);
-      console.error(error);
+
+      console.error("full error received from the backend", error);
       const obj = {};
       obj.status = false;
       obj.message = "Unable to login user. " + error.message;
