@@ -162,8 +162,7 @@ export function actionField(obj) {
       });
       dispatch(updateaActionText(text));
     } catch (error) {
-      console.error("Unable to retrieve 538a field data. ", error.message);
-      console.error(error);
+
       const callNum = localStorage.getItem("CallNumforTest");
       const obj = {};
       obj.status = false;
@@ -181,25 +180,19 @@ export function actionField(obj) {
 export function validateUser(obj) {
   return async function loginUser(dispatch, getState) {
     try {
-      console.log("inside validateUser------", obj);
       const dataObj = await axios.post("http://localhost:4000/api/v1/users/getOne", {
         obj,
       });
-      console.log("inside login user thunk", dataObj);
-      console.log("checking user array length", dataObj.data.length);
+
       if (dataObj.data.length === 0) {
-        console.log("inside data.length === 0.");
         const error = new Error("noUser");
         error.message = "User not found.";
         error.status = 404;
-        console.log("error inside if data.length=0-----", error);
         throw error;
       }
       dispatch(updateUser(dataObj));
     } catch (error) {
-      console.error("Unable to login user.", error.message);
-
-      console.error("full error received from the backend", error);
+      console.log("Uanble to login user.");
       const obj = {};
       obj.status = false;
       obj.message = "Unable to login user. " + error.message;
