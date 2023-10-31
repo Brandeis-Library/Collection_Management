@@ -43,34 +43,16 @@ router.get('/getAll', async (req, res) => {
     }
 });
 
-//Get by ID Method
+//Find one user
 router.post('/getOne', async (req, res, next) => {
     try {
-        console.log(" inside user/get one route req.body", req.body.obj);
         let nameObj = { "name": req.body.obj.username };
-        console.log("nameObj ", nameObj);
         const data = await userModel.find(nameObj);
-        console.log("data returned from userModel", data);
-        // if (data.length === 0) {
-        //     console.log("inside data.length === 0.");
-        //     const error = new Error("noUser");
-        //     error.message = "User not found - backend.";
-        //     error.status = 404;
-        //     console.log("error inside if data.length=0-----", error);
-        //     throw error;
-        // }
-
-
-
-        console.log("data returned from userModel------------", data);
-        //console.log("trying to pull out just the name field from the obj", data[0].name);
         res.status(200).json(data);
     } catch (error) {
-        console.error("\n\nerror in findOne route-------------", error);
         console.error("\n\n\nerror.message", error.message);
-
         next({ status: false, message: error.message });
-        //res.status(400).json({ message: error.message });
+
     }
 });
 
