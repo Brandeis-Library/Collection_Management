@@ -43,18 +43,18 @@ router.post('/post', async (req, res) => {
 //     }
 // });
 
-// //Find one user
-// router.post('/getOne', async (req, res, next) => {
-//     try {
-//         let nameObj = { "name": req.body.obj.username };
-//         const data = await userModel.find(nameObj);
-//         res.status(200).json(data);
-//     } catch (error) {
-//         console.error("\n\n\nerror.message", error.message);
-//         next({ status: false, message: error.message });
+//Find one user
+router.post('/getOne', async (req, res, next) => {
+    try {
+        let nameObj = { "name": req.body.obj.username };
+        const data = await userModel.find(nameObj);
+        res.status(200).json(data);
+    } catch (error) {
+        console.error("\n\n\nerror.message", error.message);
+        next({ status: false, message: error.message });
 
-//     }
-// });
+    }
+});
 
 // //Update by ID Method
 // router.patch('/update/:id', async (req, res) => {

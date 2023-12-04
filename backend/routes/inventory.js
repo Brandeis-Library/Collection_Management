@@ -14,7 +14,15 @@ const retrieve538aString = require("../helperFunctions/string583a");
 // used a post route to a "get/retrieval" as the barcode needs to be shared as payload.
 router.post("/", async function (req, res, next) {
   try {
+    console.log("req.body receiving barcode.....", req.body);
     const barcode = req.body.barcode.text;
+    console.log("barcode---------- ", barcode);
+    console.log("URL----------- ", process.env.EXLIBRIS_API_ROOT +
+      process.env.EXLIBRIS_API_PATH +
+      barcode +
+      "&apikey=" +
+      process.env.EXLIBRIS_API_BIB_GET_KEY +
+      "&expand=p_avail");
     //item retrieve query to Alma backend. API URL, Item Barcode, and APIKEY
     const { data } = await axios.get(
       process.env.EXLIBRIS_API_ROOT +
