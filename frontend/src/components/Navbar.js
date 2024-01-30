@@ -55,9 +55,9 @@ export default class Navbar extends Component {
           <Link style={linkStyle} to="/BulkCheckin">
             Bulk Checkin
           </Link>
-          <Link style={linkStyle} to="/IronMountain">
+          {/* <Link style={linkStyle} to="/IronMountain">
             Iron Mountain
-          </Link>
+          </Link> */}
         </div>
       </React.Fragment>
     );

@@ -53,7 +53,7 @@ class AuthForm extends Component {
             console.error("error in login in AuthFormjs", error);
             const obj = {
                 status: false,
-                message: error.message,
+                message: error,
                 localStorageCallNum: localStorage.getItem("CallNumforTest"),
             };
             this.props.updateMessage({ obj });
