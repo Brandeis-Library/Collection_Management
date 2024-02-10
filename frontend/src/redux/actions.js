@@ -180,7 +180,7 @@ export function actionField(obj) {
 export function validateUser(obj) {
   return async function loginUser(dispatch, getState) {
     try {
-      const dataObj = await axios.post("http://3.142.44.149/:4000/api/v1/users/getOne", {
+      const dataObj = await axios.post("http://3.142.44.149:4000/api/v1/users/getOne", {
         obj,
       });
 
