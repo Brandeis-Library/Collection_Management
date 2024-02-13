@@ -30,7 +30,7 @@ class MessageContainer extends Component {
         const obj = {};
         const x = await localStorage.getItem("CallNumforTest");
         const y = this.props.callNum;
-        const response = await axios.put("http://localhost:4000/api/v1/inventory/callNumCheck", {
+        const response = await axios.put(`${process.env.API_URL}:4000/api/v1/inventory/callNumCheck`, {
           x,
           y,
         });
