@@ -53,10 +53,10 @@ export function sendBarcodeToBackend(barcode) {
   return async function fetchItemDetailThunk(dispatch, getState) {
     try {
       dispatch(showLoading());
-      const response = await axios.post("http://localhost:4000/api/v1/inventory/", { barcode });
+      const response = await axios.post(`${process.env.API_URL}:4000/api/v1/inventory/`, { barcode });
       const respDataObj = response.data.dataObj;
       dispatch(sendBarCode(respDataObj));
-      const responseWithUpdate = await axios.put("http://localhost:4000/api/v1/inventory/", {
+      const responseWithUpdate = await axios.put(`${process.env.API_URL}:4000/api/v1/inventory/`, {
         respDataObj,
       });
       dispatch(updateItem(responseWithUpdate.data));
@@ -121,7 +121,7 @@ export function updateItemFormQuery(obj) {
   return async function updateItemThunk(dispatch, getState) {
     try {
       dispatch(showLoading());
-      const { data } = await axios.put("http://localhost:4000/api/v1/inventory/itemform", {
+      const { data } = await axios.put(`${process.env.API_URL}:4000/api/v1/inventory/itemform`, {
         obj,
       });
       dispatch(updateItemFormData(data));
@@ -157,7 +157,7 @@ export function updateItemFormData(dataObj) {
 export function actionField(obj) {
   return async function find538aThunk(dispatch, getState) {
     try {
-      const text = await axios.put("http://localhost:4000/api/v1/inventory/538Text", {
+      const text = await axios.put(`${process.env.API_URL}/api/v1/inventory/538Text`, {
         obj,
       });
       dispatch(updateaActionText(text));
@@ -180,7 +180,7 @@ export function actionField(obj) {
 export function validateUser(obj) {
   return async function loginUser(dispatch, getState) {
     try {
-      const dataObj = await axios.post("http://3.142.44.149:4000/api/v1/users/getOne", {
+      const dataObj = await axios.post(`${process.env.API_URL}:4000/api/v1/users/getOne`, {
         obj,
       });
 
