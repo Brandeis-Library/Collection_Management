@@ -9,8 +9,13 @@ import Admin from "./components/Admin";
 import BulkCheckin from "./components/BulkCheckin";
 import IronMountain from "./components/IronMountain";
 import My404Component from "./components/My404Component";
+//import { config } from "./config/.env";
 
 function App() {
+
+  console.log("process.env.NODE_ENV-----------------  ", process.env.NODE_ENV);
+
+  //console.log("config-----------------  ", config);
 
   const AuthRouteStudent = (props) => {
     console.log("props inside auth route", props);

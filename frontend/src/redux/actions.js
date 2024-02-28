@@ -11,6 +11,13 @@ import {
 } from "./actionTypes";
 import axios from "axios";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { config } from '../config/config.js';
+
+
+console.log("config-----------------  ", config);
+
+const hostURL = config.url.API_URL;
+console.log("hostURL---------------", hostURL);
 
 // Increases inventory.inventory by the amount of increment. Usually 1.
 // Used as the inital testing of this redux install
@@ -53,10 +60,10 @@ export function sendBarcodeToBackend(barcode) {
   return async function fetchItemDetailThunk(dispatch, getState) {
     try {
       dispatch(showLoading());
-      const response = await axios.post(`${process.env.API_URL}:4000/api/v1/inventory/`, { barcode });
+      const response = await axios.post(`${hostURL}:4000/api/v1/inventory/`, { barcode });
       const respDataObj = response.data.dataObj;
       dispatch(sendBarCode(respDataObj));
-      const responseWithUpdate = await axios.put(`${process.env.API_URL}:4000/api/v1/inventory/`, {
+      const responseWithUpdate = await axios.put(`${hostURL}:4000/api/v1/inventory/`, {
         respDataObj,
       });
       dispatch(updateItem(responseWithUpdate.data));
@@ -121,7 +128,7 @@ export function updateItemFormQuery(obj) {
   return async function updateItemThunk(dispatch, getState) {
     try {
       dispatch(showLoading());
-      const { data } = await axios.put(`${process.env.API_URL}:4000/api/v1/inventory/itemform`, {
+      const { data } = await axios.put(`${hostURL}:4000/api/v1/inventory/itemform`, {
         obj,
       });
       dispatch(updateItemFormData(data));
@@ -157,7 +164,7 @@ export function updateItemFormData(dataObj) {
 export function actionField(obj) {
   return async function find538aThunk(dispatch, getState) {
     try {
-      const text = await axios.put(`${process.env.API_URL}/api/v1/inventory/538Text`, {
+      const text = await axios.put(`${hostURL}:4000/api/v1/inventory/538Text`, {
         obj,
       });
       dispatch(updateaActionText(text));
@@ -180,7 +187,7 @@ export function actionField(obj) {
 export function validateUser(obj) {
   return async function loginUser(dispatch, getState) {
     try {
-      const dataObj = await axios.post(`${process.env.API_URL}:4000/api/v1/users/getOne`, {
+      const dataObj = await axios.post(`${hostURL}:4000/api/v1/users/getOne`, {
         obj,
       });
 

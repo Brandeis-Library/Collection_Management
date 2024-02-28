@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateMessage } from "../../redux/actions";
 import axios from "axios";
+import { config } from '../../config/config.js';
+
+console.log("config-----------------Message.js  ", config);
+
+const hostURL = config.url.API_URL;
+console.log("hostURL---------------Message.js", hostURL);
 
 // Component used for displaying error and items sort order messages in the front end to the user.
 class MessageContainer extends Component {
@@ -15,6 +21,8 @@ class MessageContainer extends Component {
     if (!locStor) {
       localStorage.setItem("CallNumforTest", "ZZ 9999 .Z99 2022");
     }
+
+
 
     const obj = {
       status: this.props.status,
@@ -30,10 +38,12 @@ class MessageContainer extends Component {
         const obj = {};
         const x = await localStorage.getItem("CallNumforTest");
         const y = this.props.callNum;
-        const response = await axios.put(`${process.env.API_URL}:4000/api/v1/inventory/callNumCheck`, {
+        const response = await axios.put(`${hostURL}:4000/api/v1/inventory/callNumCheck`, {
           x,
           y,
         });
+
+        console.log("messages.js backend url.", `${hostURL}:4000/api/v1/inventory/callNumCheck`);
 
         const result = response.data.status;
 
