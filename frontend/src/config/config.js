@@ -1,6 +1,6 @@
 const prod = {
     url: {
-        API_URL: `https://3.142.44.149`
+        API_URL: `http://3.142.44.149`
     }
 };
 const dev = {
