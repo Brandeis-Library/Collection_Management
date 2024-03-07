@@ -14,10 +14,10 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { config } from '../config/config.js';
 
 
-console.log("config-----------------  ", config);
+
 
 const hostURL = config.url.API_URL;
-console.log("hostURL---------------", hostURL);
+
 
 // Increases inventory.inventory by the amount of increment. Usually 1.
 // Used as the inital testing of this redux install
