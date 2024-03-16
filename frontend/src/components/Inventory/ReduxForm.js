@@ -74,10 +74,12 @@ const ReduxForm = () => {
             onChange={(event) => setCondition(event.target.value)}
             type="text">
             <option value="">None</option>
-            <option value="BRITTLE">Brittle</option>
-            <option value="DAMAGED">Damaged</option>
-            <option value="DETERIORATING">Deteriorating</option>
-            <option value="FRAGILE">Fragile</option>
+            <option value="MINT">Mint or As New</option>
+            <option value="FINE">Fine</option>
+            <option value="VERYGOOG">Very Good</option>
+            <option value="GOOD">Good</option>
+            <option value="FAIR">Fair</option>
+            <option value="POOR">Poor</option>
           </select>
         </label>
         <br />
