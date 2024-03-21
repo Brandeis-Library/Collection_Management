@@ -8,3 +8,4 @@ EXLIBRIS_API_PATH_HOLDINGS="/someurl/"
 MONGODB_NAME="SomeUsername"
 MONGODB_PASSWORD="SomePassword"
 MONGODB_DATABASE="SomeDatabaseName"
+SERVER_IP=`https://3.142.44.149`

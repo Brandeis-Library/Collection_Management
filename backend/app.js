@@ -9,7 +9,7 @@ const port = process.env.PORT || 4000;
 //load env variables
 dotenv.config({ path: "./config/config.env" });
 const mongoString = process.env.MONGO_DATABASE_URL;
-
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 // import routes
 const inventoryRouter = require("./routes/inventory");
 

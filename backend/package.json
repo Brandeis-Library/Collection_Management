@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "vitest --reporter verbose",
-    "start": "nodemon app.js"
+    "startdev": "NODE_ENV=dev nodemon app.js",
+    "startprod": "NODE_ENV=prod nodemon app.js"
   },
   "author": "Chris Underwood Library Applicaitons Developer @ Brandeis University",
   "license": "ISC",
