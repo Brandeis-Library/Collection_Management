@@ -50,6 +50,10 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Collection Mangement application backend!");
 });
 
+app.get("/api/v1", (req, res) => {
+  res.send("Default api v1 route");
+});
+
 // inventory route
 app.use("/api/v1/inventory", inventoryRouter);
 
