@@ -61,7 +61,18 @@ const ReduxForm = () => {
             onChange={(event) => setProvenance(event.target.value)}
             type="text">
             <option value="">None</option>
+            <option value="BRANDEIS">Louis D. Brandeis</option>
+            <option value="COHEN">Israel Cohen</option>
+            <option value="DIBNER">Bern Dibner</option>
+            <option value="HURST"> Fannie Hurst</option>
+            <option value="JRM">Jacob Rader Marcus</option>
             <option value="JCR">Jewish Cultural Reconstruction</option>
+            <option value="LEWSOHN">Ludwig Lewisohn</option>
+            <option value="MCKEWPARR">Charles McKew Parr</option>
+            <option value="ROSTEN">Leo Rosten</option>
+            <option value="WALLACE">Irving Wallace</option>
+            {/* <option value=""></option> */}
+
           </select>
         </label>
         <br />
