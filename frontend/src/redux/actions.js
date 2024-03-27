@@ -11,13 +11,13 @@ import {
 } from "./actionTypes";
 import axios from "axios";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
-import { config } from '../config/config.js';
+//import { config } from '../config/config.js';
 
 
 
 
-const hostURL = config.url.API_URL;
-
+const hostURL = 'http://localhost';
+//const hostURL = process.env.SERVER_IP;
 
 // Increases inventory.inventory by the amount of increment. Usually 1.
 // Used as the inital testing of this redux install

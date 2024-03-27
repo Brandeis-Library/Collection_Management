@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateMessage } from "../../redux/actions";
 import axios from "axios";
-import { config } from '../../config/config.js';
+//import { config } from '../../config/config.js';
 
-console.log("config-----------------Message.js  ", config);
+//console.log("config-----------------Message.js  ", config);
 
-const hostURL = config.url.API_URL;
+const hostURL = 'http://localhost';
+
 console.log("hostURL---------------Message.js", hostURL);
 
 // Component used for displaying error and items sort order messages in the front end to the user.
