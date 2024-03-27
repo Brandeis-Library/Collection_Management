@@ -67,7 +67,7 @@ const ReduxForm = () => {
             <option value="HURST"> Fannie Hurst</option>
             <option value="JRM">Jacob Rader Marcus</option>
             <option value="JCR">Jewish Cultural Reconstruction</option>
-            <option value="LEWSOHN">Ludwig Lewisohn</option>
+            <option value="LEWISOHN">Ludwig Lewisohn</option>
             <option value="MCKEWPARR">Charles McKew Parr</option>
             <option value="ROSTEN">Leo Rosten</option>
             <option value="WALLACE">Irving Wallace</option>
@@ -87,7 +87,7 @@ const ReduxForm = () => {
             <option value="">None</option>
             <option value="MINT">Mint or As New</option>
             <option value="FINE">Fine</option>
-            <option value="VERYGOOG">Very Good</option>
+            <option value="VERYGOOD">Very Good</option>
             <option value="GOOD">Good</option>
             <option value="FAIR">Fair</option>
             <option value="POOR">Poor</option>
