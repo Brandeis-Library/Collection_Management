@@ -188,7 +188,7 @@ export function validateUser(obj) {
   return async function loginUser(dispatch, getState) {
     try {
       const dataObj = await axios.post(`${hostURL}:4000/api/v1/users/getOne`, {
-        obj,
+        obj
       });
 
       if (dataObj.data.length === 0) {
