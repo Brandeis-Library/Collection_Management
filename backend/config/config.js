@@ -1,6 +1,6 @@
 const prod = {
     url: {
-        API_URL: process.env.SERVER_IP
+        API_URL: `http://localhost`
     }
 };
 const dev = {
