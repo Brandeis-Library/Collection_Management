@@ -17,7 +17,7 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 
 const hostURL = 'http://localhost';
-//const hostURL = process.env.SERVER_IP;
+
 
 // Increases inventory.inventory by the amount of increment. Usually 1.
 // Used as the inital testing of this redux install
