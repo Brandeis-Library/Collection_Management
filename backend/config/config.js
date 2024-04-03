@@ -1,6 +1,6 @@
 const prod = {
     url: {
-        API_URL: `http://localhost`
+        API_URL: process.env.SERVER_IP
     }
 };
 const dev = {
@@ -8,4 +8,6 @@ const dev = {
         API_URL: `http://localhost`
     }
 };
-export const config = process.env.NODE_ENV === `development` ? dev : prod;
+const config = process.env.NODE_ENV === `development` ? dev : prod;
+
+module.exports = config;

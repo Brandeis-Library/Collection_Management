@@ -1,15 +1,16 @@
 const express = require("express");
-const dotenv = require("dotenv");
+require("dotenv").config();
 const mongoose = require("mongoose");
 
 const morgan = require("morgan");
 const cors = require("cors");
 const port = process.env.PORT || 4000;
 
-//load env variables
-dotenv.config({ path: "./config/config.env" });
+
+const config = require("./config/config.js");
 const mongoString = process.env.MONGO_DATABASE_URL;
 console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+console.log("process.env.MONGO_DATABASE_URL", process.env.MONGO_DATABASE_URL);
 // import routes
 const inventoryRouter = require("./routes/inventory");
 
@@ -62,7 +63,7 @@ app.use("/api/v1/users", userRouter);
 
 //server
 app.listen(port, () => {
-  console.log(`Inventory/Collection Management app listening at http://localhost:${port}`);
+  console.log(`Inventory/Collection Management app listening at ${config.url.API_URL}:${port}`);
 });
 
 module.exports = app;
