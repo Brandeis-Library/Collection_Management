@@ -11,12 +11,12 @@ import {
 } from "./actionTypes";
 import axios from "axios";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
-//import { config } from '../config/config.js';
+import { config } from '../config/config.js';
 
 
 
 
-const hostURL = 'http://localhost';
+const hostURL = config.url.API_URL;
 
 
 // Increases inventory.inventory by the amount of increment. Usually 1.

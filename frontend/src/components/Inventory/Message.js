@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateMessage } from "../../redux/actions";
 import axios from "axios";
-//import { config } from '../../config/config.js';
+import { config } from '../../config/config.js';
 
-//console.log("config-----------------Message.js  ", config);
+console.log("config-----------------Message.js  ", config);
 
-const hostURL = 'http://localhost';
+const hostURL = config.url.API_URL;
 
 console.log("hostURL---------------Message.js", hostURL);
 
