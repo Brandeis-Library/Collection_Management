@@ -9,8 +9,7 @@ const port = process.env.PORT || 4000;
 
 const config = require("./config/config.js");
 const mongoString = process.env.MONGO_DATABASE_URL;
-console.log("process.env.NODE_ENV", process.env.NODE_ENV);
-console.log("process.env.MONGO_DATABASE_URL", process.env.MONGO_DATABASE_URL);
+
 // import routes
 const inventoryRouter = require("./routes/inventory");
 
@@ -44,7 +43,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 // cors
-app.use(cors());
+app.use(cors(origins = "*"));
 
 // home route
 app.get("/", (req, res) => {
