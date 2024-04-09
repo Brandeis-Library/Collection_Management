@@ -18,7 +18,6 @@ import { config } from '../config/config.js';
 
 const hostURL = config.url.API_URL;
 
-
 // Increases inventory.inventory by the amount of increment. Usually 1.
 // Used as the inital testing of this redux install
 // May be removed in the future
